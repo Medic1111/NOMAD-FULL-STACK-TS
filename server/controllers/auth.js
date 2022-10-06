@@ -48,4 +48,45 @@ const registerHandler = async (req, res) => {
   );
 };
 
-module.exports = { registerHandler };
+const loginHandler = (req, res) => {
+  const { email, username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(422).json({ message: "All fields are required" });
+  }
+
+  User.findOne({ username }, (err, doc) => {
+    if (!doc) {
+      return res.status(404).json({ message: "Not Registered" });
+    }
+    if (doc) {
+      bcrypt.compare(password, doc.password, (err, match) => {
+        if (!match) {
+          return res.status(403).json({ message: "Not auth" });
+        }
+        let token;
+        token = jwt.sign({ username }, `${process.env.TOKEN_SECRET}`, {
+          expiresIn: "600s",
+        });
+        res.status(200).json({ username: doc.username, token: token });
+      });
+    }
+  });
+};
+
+const verificationHandler = (req, res) => {
+  let token = req.headers.authorization;
+
+  if (!token) {
+    res.status(401).json({ message: "No token found" });
+  } else {
+    jwt.verify(token, `${process.env.TOKEN_SECRET}`, (err, verified) => {
+      console.log(err);
+      err
+        ? res.status(401).json({ message: "Not Auth...." })
+        : res.status(200).send("Yoohoo");
+    });
+  }
+};
+
+module.exports = { registerHandler, loginHandler, verificationHandler };

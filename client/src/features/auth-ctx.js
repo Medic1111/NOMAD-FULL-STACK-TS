@@ -21,6 +21,8 @@ export const AuthCtx = createContext({
   setIsAuth: () => {},
   logoutHandler: () => {},
   isTokenExp: () => {},
+  showFeedback: false,
+  setShowFeedback: () => {},
 });
 
 const AuthProvider = (props) => {
@@ -28,6 +30,7 @@ const AuthProvider = (props) => {
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState("");
   const [isAuth, setIsAuth] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const [userInfo, setUserInfo] = useState({
     email: "",
     username: "",
@@ -57,7 +60,7 @@ const AuthProvider = (props) => {
 
   const submitForm = async (action) => {
     let url;
-    action === "login" ? (url = "/login") : (url = "/register");
+    action === "login" ? (url = "/api/login") : (url = "/api/register");
 
     await axios
       .post(url, userInfo, { headers: { authorization: token } })
@@ -126,6 +129,8 @@ const AuthProvider = (props) => {
         verifyToken,
         logoutHandler,
         isTokenExp,
+        showFeedback,
+        setShowFeedback,
       }}
     >
       {props.children}
