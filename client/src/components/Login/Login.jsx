@@ -36,6 +36,7 @@ const Login = () => {
           value={authMgr.userInfo.password}
           onChange={authMgr.onInputChange}
         />
+        {authMgr.showFeedback && <p className={classes.p}>{authMgr.feedMsg}</p>}
         <button
           onClick={submitHandler}
           className={classes.btn}

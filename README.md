@@ -22,7 +22,7 @@
 - [x] Single form with dynamic URL according to user action
 - [x] Email, username and password for sign up
 - [x] Username and password for login
-- [] If inputs are invalid, feedback is given:
+- [x] If inputs are invalid, feedback is given:
 
   LOGIN
 
