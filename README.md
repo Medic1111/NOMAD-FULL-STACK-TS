@@ -26,11 +26,11 @@
 
   LOGIN
 
-  - [] 200 Login
-  - [] 403 for wrong credentials
-  - [] 404 for not found
-  - [] 422 for invalid credentials
-  - [] 500 server side error
+  - [x] 200 Login
+  - [x] 403 for wrong credentials
+  - [x] 404 for not found
+  - [x] 422 for invalid credentials
+  - [x] 500 server side error
 
   REGISTER
 

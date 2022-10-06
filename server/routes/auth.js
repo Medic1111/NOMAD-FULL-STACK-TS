@@ -1,7 +1,15 @@
 const express = require("express");
 const route = express.Router();
-const { registerHandler } = require("../controllers/auth");
+const {
+  registerHandler,
+  loginHandler,
+  verificationHandler,
+} = require("../controllers/auth");
 
-const registerRoute = route.post("/register", registerHandler);
+const registerRoute = route.post("/api/register", registerHandler);
 
-module.exports = { registerRoute };
+const loginRoute = route.post("/api/login", loginHandler);
+
+const verificationRoute = route.get("/api/verification", verificationHandler);
+
+module.exports = { registerRoute, loginRoute, verificationRoute };
