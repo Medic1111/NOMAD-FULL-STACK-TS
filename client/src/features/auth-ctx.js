@@ -23,6 +23,9 @@ export const AuthCtx = createContext({
   isTokenExp: () => {},
   showFeedback: false,
   setShowFeedback: () => {},
+  feedMsg: "",
+  setFeedMsg: () => {},
+  feeback: (statusCode) => {},
 });
 
 const AuthProvider = (props) => {
@@ -31,6 +34,7 @@ const AuthProvider = (props) => {
   const [token, setToken] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [feedMsg, setFeedMsg] = useState("");
   const [userInfo, setUserInfo] = useState({
     email: "",
     username: "",
@@ -38,6 +42,7 @@ const AuthProvider = (props) => {
   });
 
   const onInputChange = (e) => {
+    setShowFeedback(false);
     const { name, value } = e.target;
     setUserInfo((prev) => {
       return { ...prev, [name]: value };
@@ -79,6 +84,7 @@ const AuthProvider = (props) => {
         resetUserInfo();
       })
       .catch((err) => {
+        feeback(err.response.status);
         setIsAuth(false);
       });
   };
@@ -98,7 +104,9 @@ const AuthProvider = (props) => {
       .then((serverRes) => {
         serverRes.status === 200 && setIsAuth(true);
       })
-      .catch((err) => setIsAuth(false));
+      .catch((err) => {
+        setIsAuth(false);
+      });
   };
 
   const isTokenExp = () => {
@@ -110,6 +118,18 @@ const AuthProvider = (props) => {
       nav("/auth");
       setIsAuth(false);
     }
+  };
+
+  const feeback = (statusCode) => {
+    setShowFeedback(true);
+    statusCode === 403 && setFeedMsg("Wrong password or username");
+    statusCode === 404 && setFeedMsg("User not registered");
+    statusCode === 422 &&
+      setFeedMsg(
+        "All fields required, password must contain at least 6 characters"
+      );
+    statusCode === 500 && setFeedMsg("Oops, something wrong with the server");
+    statusCode === 409 && setFeedMsg("Email or Username already registered");
   };
 
   return (
@@ -131,6 +151,9 @@ const AuthProvider = (props) => {
         isTokenExp,
         showFeedback,
         setShowFeedback,
+        feeback,
+        setFeedMsg,
+        feedMsg,
       }}
     >
       {props.children}

@@ -46,6 +46,8 @@ const Signup = () => {
           value={authMgr.userInfo.password}
           onChange={authMgr.onInputChange}
         />
+        {authMgr.showFeedback && <p className={classes.p}>{authMgr.feedMsg}</p>}
+
         <input className={classes.btn} type="submit" value="Sign Up" />
       </form>
     </div>
