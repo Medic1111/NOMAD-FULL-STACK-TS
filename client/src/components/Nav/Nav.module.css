@@ -1,0 +1,14 @@
+.nav {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.link {
+  text-decoration: none;
+  color: rgb(0, 128, 92);
+  font-size: 1.7rem;
+  letter-spacing: 0.7px;
+}
