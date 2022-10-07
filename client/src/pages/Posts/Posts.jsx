@@ -1,11 +1,16 @@
 import { useEffect, useContext, useState, useRef } from "react";
 import { AuthCtx } from "../../features/auth-ctx";
+import { userCtx } from "../../features/user-ctx";
+import { PostCtx } from "../../features/posts-ctx";
 import classes from "./Posts.module.css";
-import beach from "../../assets/beach.jpg";
+import PostItem from "../../components/PostItem/PostItem";
+import dummyData from "../../data/dummy";
+
 const Posts = () => {
   const authMgr = useContext(AuthCtx);
+  const userMgr = useContext(userCtx);
+  const postsMgr = useContext(PostCtx);
   const [showForm, setShowForm] = useState(false);
-
   useEffect(() => {
     authMgr.isTokenExp();
   }, []);
@@ -13,6 +18,7 @@ const Posts = () => {
   return (
     <main className={classes.main}>
       <aside className={classes.aside}>
+        <p className={classes.welcome}>Welcome {userMgr.currentUser}</p>
         <form className={classes.searchForm}>
           <input
             className={classes.searchBar}
@@ -39,83 +45,19 @@ const Posts = () => {
         </form>
       )}
       <ul className={classes.ul}>
-        <li className={classes.li}>
-          <div className={classes.userBox}>
-            <div className={classes.avatarBox}>
-              <img className={classes.avatar} src={beach} />
-              <p className={classes.username}>Username</p>
-            </div>
-            <div className={classes.voteBox}>
-              <span className={classes.upvote}>⬆️</span>
-              <span className={classes.upvoteCount}>22</span>
-            </div>
-          </div>
-          <img className={classes.img} src={beach} />
-
-          <h4 className={classes.title}>Miami Beach</h4>
-          <p className={classes.p}>
-            Content substringed Content substringed Content substringed Content
-            subs
-          </p>
-        </li>
-        {/*  */}
-        <li className={classes.li}>
-          <div className={classes.userBox}>
-            <div className={classes.avatarBox}>
-              <img className={classes.avatar} src={beach} />
-              <p className={classes.username}>Username</p>
-            </div>
-            <div className={classes.voteBox}>
-              <span className={classes.upvote}>⬆️</span>
-              <span className={classes.upvoteCount}>22</span>
-            </div>
-          </div>
-          <img className={classes.img} src={beach} />
-
-          <h4 className={classes.title}>Miami Beach</h4>
-          <p className={classes.p}>
-            Content substringed Content substringed Content substringed Content
-            substringed Content substringed Content substringed
-          </p>
-        </li>
-        <li className={classes.li}>
-          <div className={classes.userBox}>
-            <div className={classes.avatarBox}>
-              <img className={classes.avatar} src={beach} />
-              <p className={classes.username}>Username</p>
-            </div>
-            <div className={classes.voteBox}>
-              <span className={classes.upvote}>⬆️</span>
-              <span className={classes.upvoteCount}>22</span>
-            </div>
-          </div>
-          <img className={classes.img} src={beach} />
-
-          <h4 className={classes.title}>Miami Beach</h4>
-          <p className={classes.p}>
-            Content substringed Content substringed Content substringed Content
-            substringed Content substringed Content substringed
-          </p>
-        </li>
-        <li className={classes.li}>
-          <div className={classes.userBox}>
-            <div className={classes.avatarBox}>
-              <img className={classes.avatar} src={beach} />
-              <p className={classes.username}>Username</p>
-            </div>
-            <div className={classes.voteBox}>
-              <span className={classes.upvote}>⬆️</span>
-              <span className={classes.upvoteCount}>22</span>
-            </div>
-          </div>
-          <img className={classes.img} src={beach} />
-
-          <h4 className={classes.title}>Miami Beach</h4>
-          <p className={classes.p}>
-            Content substringed Content substringed Content substringed Content
-            substringed Content substringed Content substringed
-          </p>
-        </li>
+        {dummyData.map((obj, index) => {
+          return (
+            <PostItem
+              key={`POST_${index}`}
+              avatar={obj.avatar}
+              username={obj.username}
+              voteCount={obj.voteCount}
+              title={obj.title}
+              content={obj.content}
+              url={obj.url}
+            />
+          );
+        })}
       </ul>
     </main>
   );
