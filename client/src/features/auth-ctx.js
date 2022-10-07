@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
+import { useContext, createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { userCtx } from "./user-ctx";
 
 export const AuthCtx = createContext({
   showLogin: false,
@@ -29,6 +30,7 @@ export const AuthCtx = createContext({
 });
 
 const AuthProvider = (props) => {
+  const userMgr = useContext(userCtx);
   const nav = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState("");
@@ -60,6 +62,7 @@ const AuthProvider = (props) => {
   const logoutHandler = () => {
     setToken("");
     setIsAuth(false);
+    userMgr.setCurrentUser("");
     localStorage.removeItem("userValidation");
   };
 
@@ -70,6 +73,7 @@ const AuthProvider = (props) => {
     await axios
       .post(url, userInfo, { headers: { authorization: token } })
       .then((serverRes) => {
+        userMgr.setCurrentUser(serverRes.data.username);
         nav("/posts");
         setIsAuth(true);
         const myExp = new Date(new Date().getTime() + 161 * 60 * 60);
@@ -106,6 +110,7 @@ const AuthProvider = (props) => {
       })
       .catch((err) => {
         setIsAuth(false);
+        userMgr.setCurrentUser("");
       });
   };
 
@@ -113,10 +118,11 @@ const AuthProvider = (props) => {
     const storedData = JSON.parse(localStorage.getItem("userValidation"));
     if (storedData && new Date(storedData.expiration) > new Date()) {
       setIsAuth(true);
-      // SET CURRENT USERNAME IF ANY
+      userMgr.setCurrentUser(storedData.username);
     } else {
       nav("/auth");
       setIsAuth(false);
+      userMgr.setCurrentUser("");
     }
   };
 

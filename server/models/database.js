@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, require, unique: true },
   password: { type: String, require },
   joinedDate: { type: Date, default: new Date().toISOString() },
+  posts: { type: Array, default: [] },
+  avatar: { type: String, default: "" },
 });
 
 const User = new mongoose.model("User", userSchema);
