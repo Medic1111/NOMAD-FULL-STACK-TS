@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import AuthProvider from "./features/auth-ctx";
+import UserProvider from "./features/user-ctx";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
+      <UserProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
