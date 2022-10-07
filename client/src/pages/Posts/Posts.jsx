@@ -1,22 +1,35 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useRef } from "react";
 import { AuthCtx } from "../../features/auth-ctx";
 import classes from "./Posts.module.css";
 import beach from "../../assets/beach.jpg";
 const Posts = () => {
   const authMgr = useContext(AuthCtx);
   const [showForm, setShowForm] = useState(false);
+
   useEffect(() => {
     authMgr.isTokenExp();
   }, []);
 
   return (
     <main className={classes.main}>
-      <button
-        className={classes.btnCreate}
-        onClick={() => setShowForm((prev) => !prev)}
-      >
-        {!showForm ? "Create new" : "Cancel"}
-      </button>
+      <aside className={classes.aside}>
+        <form className={classes.searchForm}>
+          <input
+            className={classes.searchBar}
+            type="text"
+            placeholder="Search"
+          />
+          <button className={classes.searchBtn} type="submit">
+            Search
+          </button>
+        </form>
+        <button
+          className={classes.btnCreate}
+          onClick={() => setShowForm((prev) => !prev)}
+        >
+          {!showForm ? "+" : "-"}
+        </button>
+      </aside>
       {showForm && (
         <form>
           <input type="text" placeholder="Title" />
@@ -42,7 +55,7 @@ const Posts = () => {
           <h4 className={classes.title}>Miami Beach</h4>
           <p className={classes.p}>
             Content substringed Content substringed Content substringed Content
-            substringed Content substringed Content substringed
+            subs
           </p>
         </li>
         {/*  */}
