@@ -4,6 +4,8 @@ import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import classes from "./Posts.module.css";
 import PostItem from "../../components/PostItem/PostItem";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import NewPostForm from "../../components/NewPostForm/NewPostForm";
 
 const Posts = () => {
   const authMgr = useContext(AuthCtx);
@@ -20,16 +22,8 @@ const Posts = () => {
     <main className={classes.main}>
       <aside className={classes.aside}>
         <p className={classes.welcome}>Welcome {userMgr.currentUser}</p>
-        <form className={classes.searchForm}>
-          <input
-            className={classes.searchBar}
-            type="text"
-            placeholder="Search"
-          />
-          <button className={classes.searchBtn} type="submit">
-            Search
-          </button>
-        </form>
+
+        <SearchForm />
         <button
           className={classes.btnCreate}
           onClick={() => setShowForm((prev) => !prev)}
@@ -37,14 +31,7 @@ const Posts = () => {
           {!showForm ? "+" : "-"}
         </button>
       </aside>
-      {showForm && (
-        <form>
-          <input type="text" placeholder="Title" />
-          <textarea placeholder="Content" />
-          <input type="file" />
-          <button type="submit">Post</button>
-        </form>
-      )}
+      {showForm && <NewPostForm />}
       <ul className={classes.ul}>
         {postsMgr.displayPosts.map((obj, index) => {
           return (
