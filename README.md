@@ -58,3 +58,5 @@
 - [x] Clicking on the title will render the entire post page
 - [x] Clicking on the avatar or username will take to that user's profile
 - [x] If it's the logged user's post, it will have the option to delete and edit
+- [x] Page will display a Search Form
+- [x] Page will display a toggle button for add new post form
