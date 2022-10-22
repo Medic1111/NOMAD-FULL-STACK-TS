@@ -101,3 +101,16 @@
   align-items: center;
   gap: 0.75em;
 }
+
+@media (max-width: 798px) {
+  .li {
+    min-width: 95%;
+    padding: 2.5%;
+  }
+  .img {
+    width: 50%;
+  }
+  .li:hover {
+    transform: scale(1);
+  }
+}
