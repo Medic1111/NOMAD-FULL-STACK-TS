@@ -4,7 +4,6 @@ import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import classes from "./Posts.module.css";
 import PostItem from "../../components/PostItem/PostItem";
-import dummyData from "../../data/dummy";
 
 const Posts = () => {
   const authMgr = useContext(AuthCtx);
@@ -14,6 +13,8 @@ const Posts = () => {
   useEffect(() => {
     authMgr.isTokenExp();
   }, []);
+
+  // Check if auth, redirect here to clear lint
 
   return (
     <main className={classes.main}>
@@ -45,9 +46,10 @@ const Posts = () => {
         </form>
       )}
       <ul className={classes.ul}>
-        {dummyData.map((obj, index) => {
+        {postsMgr.displayPosts.map((obj, index) => {
           return (
             <PostItem
+              id={index}
               key={`POST_${index}`}
               avatar={obj.avatar}
               username={obj.username}

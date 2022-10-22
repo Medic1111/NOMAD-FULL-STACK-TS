@@ -36,6 +36,15 @@ const dummyData = [
     content:
       "Bem vindo a floresta de concreto, on o ceu cinza acelera a vibe e mantem todos ocupados, e tossindo.",
   },
+  {
+    username: "medic1111",
+    avatar: beach,
+    voteCount: 4,
+    url: beach,
+    title: "North Beach",
+    content:
+      "Best place to be a local, if you can handle the dangerous tourists that you will certainly encounter",
+  },
 ];
 
 export default dummyData;

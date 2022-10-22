@@ -1,14 +1,29 @@
 import classes from "./PostItem.module.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userCtx } from "../../features/user-ctx";
+import { useNavigate } from "react-router-dom";
+import { PostCtx } from "../../features/posts-ctx";
+import dummyData from "../../data/dummy";
 
-const PostItem = ({ avatar, username, voteCount, url, title, content }) => {
+const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
   const userMgr = useContext(userCtx);
+  const postMgr = useContext(PostCtx);
+  const nav = useNavigate();
+
+  const directToPostSpec = () => {
+    postMgr.fetchPost(id);
+  };
 
   return (
     <li className={classes.li}>
       <div className={classes.userBox}>
-        <div className={classes.avatarBox}>
+        <div
+          onClick={() => {
+            userMgr.fetchUser(username);
+            nav(`/users/${username}`);
+          }}
+          className={classes.avatarBox}
+        >
           <img className={classes.avatar} src={avatar} />
           <p className={classes.username}>{username}</p>
         </div>
@@ -17,11 +32,13 @@ const PostItem = ({ avatar, username, voteCount, url, title, content }) => {
           <span className={classes.upvoteCount}>{voteCount}</span>
         </div>
       </div>
-      <img className={classes.img} src={url} />
+      <img onClick={directToPostSpec} className={classes.img} src={url} />
 
-      <h4 className={classes.title}>{title}</h4>
+      <h4 onClick={directToPostSpec} className={classes.title}>
+        {title}
+      </h4>
       <p className={classes.p}>{content.substring(0, 97)}...</p>
-      <p className={classes.pOptions}>
+      <div className={classes.pOptions}>
         <span className={classes.span}>more like this</span>
         {username === userMgr.currentUser && (
           <div className={classes.userOptions}>
@@ -29,7 +46,7 @@ const PostItem = ({ avatar, username, voteCount, url, title, content }) => {
             <span className={classes.span}>edit</span>
           </div>
         )}
-      </p>
+      </div>
     </li>
   );
 };
