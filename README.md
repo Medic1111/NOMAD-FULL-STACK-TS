@@ -2,10 +2,10 @@
 
 - [x] Home
 - [x] Auth
-- [] Posts
-- [] Profile
-- [] SpecPost
-- [] User
+- [ ] Posts
+- [ ] Profile
+- [ ] SpecPost
+- [ ] User
 
 # HOME:
 
@@ -22,7 +22,7 @@
 - [x] Single form with dynamic URL according to user action
 - [x] Email, username and password for sign up
 - [x] Username and password for login
-- [] If inputs are invalid, feedback is given:
+- [x] If inputs are invalid, feedback is given:
 
   LOGIN
 
@@ -48,5 +48,13 @@
 - [x] Posts page can only be accessed if token is validated
 - [x] If token is not valid, user is redirected to Auth again
 - [x] If user logs out, token is destroyed and user is redirected to the root/home page
-- [] test login route
-- [] test register route
+- [ ] test login route
+- [ ] test register route
+
+# POSTS: MOCK DATA
+
+- [x] Posts page will display a list of posts
+- [x] Each post will have a title, content, username, avatar, upvote count, and upvote trigger
+- [ ] Clicking on the title will render the entire post
+- [ ] Clicking on the avatar or username will take to that user's profile
+- [ ] If it's the logged user's post, it will have the option to delete and edit

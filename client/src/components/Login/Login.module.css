@@ -58,6 +58,12 @@
   background-color: rgba(87, 179, 153, 0.788);
   transition: 0.3s;
 }
+
+.p {
+  color: rgb(137, 95, 28);
+  letter-spacing: 0.7px;
+  font-size: 1.3em;
+}
 @media (max-width: 798px) {
   .form {
     width: 90%;
