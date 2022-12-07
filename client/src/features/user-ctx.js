@@ -1,5 +1,7 @@
-import { createContext, useState } from "react";
-import dummyData from "../data/dummy";
+import axios from "axios";
+import { createContext, useContext, useState } from "react";
+import { PostCtx } from "./posts-ctx";
+
 export const userCtx = createContext({
   currentUser: "",
   setCurrentUser: () => {},
@@ -10,30 +12,29 @@ export const userCtx = createContext({
 
 const UserProvider = (props) => {
   const [currentUser, setCurrentUser] = useState("");
-
-  const authorOf = (userToFind) => {
-    return dummyData.filter((obj) => {
-      return obj.username === userToFind;
-    });
-  };
+  const postsMgr = useContext(PostCtx);
+  // const authorOf = (userToFind) => {
+  //   return postsMgr.displayPosts.filter((obj) => {
+  //     return obj.username === userToFind;
+  //   });
+  // };
 
   const [userProfile, setUserProfile] = useState({
     username: "",
     avatar: "",
-    totalPosts: "",
-    posts: "",
+    totalPosts: 0,
+    posts: [],
   });
 
-  const fetchUser = (username) => {
-    // REFACTOR TO API REQUEST
-    setUserProfile({
-      username: username,
-      avatar: "",
-      totalPosts: authorOf(username).length,
-      posts: authorOf(username),
-    });
-
-    console.log(userProfile);
+  const fetchUser = async (username) => {
+    await axios
+      .get(`/api/v1/users/${username}`)
+      .then((serverRes) => {
+        setUserProfile(serverRes.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

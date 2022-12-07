@@ -14,6 +14,7 @@ const Posts = () => {
   const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     authMgr.isTokenExp();
+    authMgr.isAuth && postsMgr.fetchPostApi();
   }, []);
 
   // Check if auth, redirect here to clear lint
@@ -36,7 +37,7 @@ const Posts = () => {
         {postsMgr.displayPosts.map((obj, index) => {
           return (
             <PostItem
-              id={index}
+              id={obj._id}
               key={`POST_${index}`}
               avatar={obj.avatar}
               username={obj.username}

@@ -15,6 +15,12 @@ const {
   loginRoute,
   verificationRoute,
 } = require("./routes/auth");
+const getPostsRoute = require("./routes/get_posts");
+const getSpecPostRoute = require("./routes/get_spec_post");
+const getUserRoute = require("./routes/get_user");
+
+// SEED DB
+const seedRoute = require("./database/seedRoute");
 
 const { User } = require("./models/database");
 
@@ -29,6 +35,10 @@ app.use(express.static(path.resolve(__dirname, "../client/build")));
 app.use("/", registerRoute);
 app.use("/", loginRoute);
 app.use("/", verificationRoute);
+app.use("/", seedRoute);
+app.use("/", getPostsRoute);
+app.use("/", getSpecPostRoute);
+app.use("/", getUserRoute);
 
 // DB CONNECTION
 

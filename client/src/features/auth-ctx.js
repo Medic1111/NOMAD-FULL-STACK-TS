@@ -73,6 +73,9 @@ const AuthProvider = (props) => {
     await axios
       .post(url, userInfo, { headers: { authorization: token } })
       .then((serverRes) => {
+        // CHANGE TO OBJ
+        // USERNAME AND URL
+        // NEED INFO FOR NEW POST CREATION
         userMgr.setCurrentUser(serverRes.data.username);
         nav("/posts");
         setIsAuth(true);

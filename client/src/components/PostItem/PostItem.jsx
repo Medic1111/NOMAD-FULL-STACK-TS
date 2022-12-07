@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import { userCtx } from "../../features/user-ctx";
 import { useNavigate } from "react-router-dom";
 import { PostCtx } from "../../features/posts-ctx";
-import dummyData from "../../data/dummy";
 
 const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
   const userMgr = useContext(userCtx);
@@ -11,7 +10,7 @@ const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
   const nav = useNavigate();
 
   const directToPostSpec = () => {
-    postMgr.fetchPost(id);
+    postMgr.fetchSpecPost(id);
   };
 
   return (

@@ -1,21 +1,42 @@
 import { createContext, useState } from "react";
-import dummyData from "../data/dummy";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const PostCtx = createContext({
-  displayPosts: dummyData,
+  displayPosts: [],
   setDisplayPosts: () => {},
-  fetchPost: (id) => {},
-  specificPost: {},
-  setSpecificPost: () => {},
+  fetchSpecPost: (id) => {},
+  fetchPostApi: () => {},
+  specPost: {},
+  setSpecPost: () => {},
 });
 
 const PostsProvider = (props) => {
   const nav = useNavigate();
-  const [displayPosts, setDisplayPosts] = useState(dummyData);
+  const [displayPosts, setDisplayPosts] = useState([]);
+  const [specPost, setSpecPost] = useState({});
 
-  const fetchPost = (id) => {
-    nav(`/posts/${id}`);
+  const fetchPostApi = async () => {
+    await axios
+      .get("/api/v1/posts")
+      .then((serverRes) => {
+        setDisplayPosts(serverRes.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchSpecPost = async (id) => {
+    await axios
+      .get(`/api/v1/posts/${id}`)
+      .then((serverRes) => {
+        setSpecPost(serverRes.data);
+        nav(`/posts/${id}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -23,7 +44,10 @@ const PostsProvider = (props) => {
       value={{
         displayPosts,
         setDisplayPosts,
-        fetchPost,
+        fetchSpecPost,
+        fetchPostApi,
+        specPost,
+        setSpecPost,
       }}
     >
       {props.children}
