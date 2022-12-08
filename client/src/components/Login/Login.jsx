@@ -24,6 +24,8 @@ const Login = () => {
           name="username"
           value={authMgr.userInfo.username}
           onChange={authMgr.onInputChange}
+          required
+          maxLength={"14"}
         />
         <label className={classes.label} htmlFor="password">
           Password

@@ -29,10 +29,10 @@ const Hero = () => {
       <article className={classes.article}>
         <h2 className={classes.h2}>Welcome Wanderer!</h2>
         <p className={classes.p}>
-          Are you free-spirited, untamable, who simply won't stop until all
-          that's there to be seen gets seen? You have found your place!
-          Non-toxic community filled with people who love to unsettle and share
-          their experiences!
+          Are you free-spirited, untamable individual, who simply won't stop
+          until all that's there to be seen gets seen? You have found your
+          place! Non-toxic community filled with people who love to unsettle and
+          share their experiences!
         </p>
         <div className={classes.btnBox}>
           <button onClick={takeToSignup} className={classes.btn}>

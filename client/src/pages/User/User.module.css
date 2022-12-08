@@ -7,6 +7,7 @@
   height: 100%;
   overflow-y: scroll;
   padding: 5vh 5vw;
+  position: relative;
 }
 .h1 {
   font-size: 2.2em;
@@ -85,9 +86,13 @@
 }
 
 .img {
-  width: 50%;
+  /* width: 50%;
   border-radius: 10px;
-  cursor: pointer;
+  cursor: pointer; */
+  width: 60%;
+  height: 30rem;
+  max-height: 25rem;
+  border-radius: 10px;
 }
 .title {
   font-size: 2.2em;
@@ -135,7 +140,10 @@
     height: auto;
   }
   .img {
-    width: 50%;
+    width: 70%;
+    height: 20rem;
+    max-height: 25rem;
+    border-radius: 10px;
   }
   .li:hover {
     transform: unset;

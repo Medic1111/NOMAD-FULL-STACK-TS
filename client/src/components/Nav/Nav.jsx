@@ -45,6 +45,9 @@ const Nav = () => {
       {authMgr.isAuth && (
         <>
           <Link
+            onClick={() => {
+              userMgr.fetchUser(userMgr.currentUser.username);
+            }}
             className={classes.link}
             to={`/users/${userMgr.currentUser.username}`}
           >

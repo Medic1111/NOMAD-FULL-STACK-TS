@@ -18,6 +18,7 @@ const getSpecPostRoute = require("./routes/get_spec_post");
 const getUserRoute = require("./routes/get_user");
 const createPostRoute = require("./routes/create_post");
 const delPostRoute = require("./routes/del_post");
+const avatarRoute = require("./routes/avatar");
 // SEED DB
 const seedRoute = require("./database/seedRoute");
 
@@ -40,6 +41,7 @@ app.use("/", getSpecPostRoute);
 app.use("/", getUserRoute);
 app.use("/", createPostRoute);
 app.use("/", delPostRoute);
+app.use("/", avatarRoute);
 
 // DB CONNECTION
 

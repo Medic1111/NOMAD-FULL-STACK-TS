@@ -1,13 +1,16 @@
 import classes from "./User.module.css";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
+import AvatarForm from "../../components/AvatarForm/AvatarForm";
 
 const User = () => {
   const userMgr = useContext(userCtx);
   const postMgr = useContext(PostCtx);
   const userId = useParams();
+
+  const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     userMgr.fetchUser(userId.id);
@@ -15,6 +18,7 @@ const User = () => {
 
   return (
     <main className={classes.main}>
+      {showEdit && <AvatarForm setShowEdit={setShowEdit} />}
       <h1 className={classes.h1}>{userMgr.userProfile.username}</h1>
       <div className={classes.avatarBox}>
         <img
@@ -22,6 +26,13 @@ const User = () => {
             userMgr.currentUser.username === userId.id
               ? classes.userAvatar
               : classes.avatar
+          }
+          onClick={
+            userMgr.currentUser.username !== userId.id
+              ? null
+              : () => {
+                  setShowEdit(true);
+                }
           }
           src={userMgr.userProfile.avatar}
         />

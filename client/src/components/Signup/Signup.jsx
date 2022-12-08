@@ -23,6 +23,8 @@ const Signup = () => {
           id="email"
           name="email"
           onChange={authMgr.onInputChange}
+          maxLength="50"
+          required
         />
         <label className={classes.label} htmlFor="username">
           Username
@@ -34,6 +36,8 @@ const Signup = () => {
           name="username"
           value={authMgr.userInfo.username}
           onChange={authMgr.onInputChange}
+          maxLength="14"
+          required
         />
         <label className={classes.label} htmlFor="password">
           Password
@@ -45,6 +49,7 @@ const Signup = () => {
           name="password"
           value={authMgr.userInfo.password}
           onChange={authMgr.onInputChange}
+          required
         />
         <label className={classes.label} htmlFor="avatar">
           Profile Picture
