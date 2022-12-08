@@ -1,11 +1,13 @@
 import classes from "./Hero.module.css";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthCtx } from "../../features/auth-ctx";
 
 const Hero = () => {
   const nav = useNavigate();
   const authMgr = useContext(AuthCtx);
+
+  authMgr.isAuth && nav("/posts");
 
   const takeToLogin = () => {
     authMgr.setShowLogin(true);

@@ -1,7 +1,7 @@
 # PAGES: STRUCTURE
 
-- [x] Home
-- [x] Auth
+- [x] Home- RECHECKED
+- [x] Auth- RECHECKED
 - [ ] Posts
 - [ ] Profile
 - [ ] SpecPost
@@ -61,5 +61,14 @@
 - [x] Page will display a Search Form
 - [x] Page will display a toggle button for add new post form
 
-<!-- CHECK TEST.REST -->
-<!-- ENSURE USER PAGE CLIENT RESPONDS ADEQUATELY -->
+### NEXT:
+
+- Image size on SpecPost Mobile MUCH smaller, please, medic...
+
+- Posts.jsx :
+  - Build Route for delete a post
+  - Trigger DELETE post
+  - SpecPost if user, trigger DELETE post
+  - Profile: trigger DELETE post
+
+### LITTLE THINGS THAT MATTER:

@@ -1,7 +1,7 @@
-import { useContext, useEffect } from "react";
-import { userCtx } from "../../features/user-ctx";
-import { useParams } from "react-router-dom";
 import classes from "./User.module.css";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 
 const User = () => {
@@ -20,17 +20,20 @@ const User = () => {
       <p className={classes.totalPosts}>
         total posts: {userMgr.userProfile.totalPosts}
       </p>
-      <ul>
+      <ul className={classes.ul}>
         {userMgr.userProfile.posts.map((obj, index) => {
           return (
-            <li onClick={postMgr.fetchPost(obj._id)}>
+            <li
+              key={`PROFILE_POST_${index}`}
+              className={classes.li}
+              onClick={() => postMgr.fetchSpecPost(obj._id)}
+            >
               <img className={classes.img} src={obj.url} />
-
               <h4 className={classes.title}>{obj.title}</h4>
-              <p className={classes.p}>{obj.content}</p>
+              <p className={classes.p}>{obj.content.substring(0, 95)}...</p>
               <div className={classes.pOptions}>
                 <span className={classes.span}>more like this</span>
-                {obj.username === userMgr.currentUser && (
+                {obj.username === userMgr.currentUser.username && (
                   <div className={classes.userOptions}>
                     <span className={classes.span}>delete</span>
                     <span className={classes.span}>edit</span>

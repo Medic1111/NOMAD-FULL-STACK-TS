@@ -13,3 +13,130 @@
   width: 20rem;
   border-radius: 50%;
 }
+.ul {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  gap: 5vh;
+}
+
+/* POSTS */
+
+.li {
+  background-color: rgba(5, 47, 33, 0.024);
+  min-width: 31.25vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5vh 1em;
+  gap: 1em;
+  border-radius: 10px;
+}
+.li:hover {
+  transform: scale(1.05);
+  transition: 0.25s;
+}
+
+.avatarBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  cursor: pointer;
+}
+.userBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 2em;
+  width: 70%;
+}
+.username {
+  font-size: 1.3em;
+  letter-spacing: 0.3px;
+  color: rgb(43, 55, 51);
+}
+.avatar {
+  width: 5em;
+  height: 5em;
+  border-radius: 2.5em;
+}
+.img {
+  width: 50%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.title {
+  font-size: 2.2em;
+  text-align: center;
+  letter-spacing: 1.2px;
+  text-transform: capitalize;
+  color: rgb(43, 55, 51);
+  max-width: 70%;
+  cursor: pointer;
+}
+
+.p {
+  max-width: 70%;
+  text-align: center;
+  color: rgba(43, 55, 51, 0.915);
+  font-size: 1.7em;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
+}
+
+.voteBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.upvoteCount {
+  font-size: 1.4em;
+}
+.upvote {
+  font-size: 2em;
+  cursor: pointer;
+  color: rgb(118, 195, 173);
+}
+.pOptions {
+  height: 5vh;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: flex-end;
+}
+.span {
+  color: rgb(118, 195, 173);
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.userOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75em;
+}
+
+@media (max-width: 798px) {
+  .li {
+    min-width: 95%;
+    padding: 2.5%;
+  }
+  .img {
+    width: 50%;
+  }
+  .li:hover {
+    transform: scale(1);
+  }
+}

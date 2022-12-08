@@ -1,6 +1,6 @@
+import classes from "./Login.module.css";
 import { useContext } from "react";
 import { AuthCtx } from "../../features/auth-ctx";
-import classes from "./Login.module.css";
 
 const Login = () => {
   const authMgr = useContext(AuthCtx);

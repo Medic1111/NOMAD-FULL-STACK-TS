@@ -3,7 +3,6 @@ const { Post } = require("../models/database");
 const getPostsControl = async (req, res) => {
   await Post.find()
     .then((posts) => {
-      console.log(posts);
       res.status(200).json(posts);
     })
     .catch((err) => {

@@ -45,6 +45,8 @@
 }
 .img {
   width: 70%;
+  height: 20rem;
+  max-height: 25rem;
   border-radius: 10px;
   cursor: pointer;
 }

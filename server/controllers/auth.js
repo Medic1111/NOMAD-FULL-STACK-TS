@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const registerHandler = async (req, res) => {
-  const { email, username, password } = req.body;
+  const { email, username, password, avatar } = req.body;
 
   if (!username || !email || password.length < 6) {
     return res.status(422).json({ message: "Invalid credentials" });
@@ -31,6 +31,7 @@ const registerHandler = async (req, res) => {
         email,
         username,
         password: hash,
+        avatar,
       });
 
       newUser.save((err, doc) => {
@@ -42,6 +43,7 @@ const registerHandler = async (req, res) => {
               message: "User Registered Successfully",
               token,
               username: doc.username,
+              avatar: doc.avatar,
             });
       });
     }
@@ -68,7 +70,9 @@ const loginHandler = (req, res) => {
         token = jwt.sign({ username }, `${process.env.TOKEN_SECRET}`, {
           expiresIn: "600s",
         });
-        res.status(200).json({ username: doc.username, token: token });
+        res
+          .status(200)
+          .json({ username: doc.username, avatar: doc.avatar, token: token });
       });
     }
   });
@@ -76,13 +80,11 @@ const loginHandler = (req, res) => {
 
 const verificationHandler = (req, res) => {
   let token = req.headers.authorization;
-  console.log(token);
 
   if (!token) {
     res.status(401).json({ message: "No token found" });
   } else {
     jwt.verify(token, `${process.env.TOKEN_SECRET}`, (err, verified) => {
-      console.log(err);
       err
         ? res.status(401).json({ message: "Not Auth...." })
         : res.status(200).send("Yoohoo");

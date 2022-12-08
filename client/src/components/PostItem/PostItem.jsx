@@ -1,7 +1,7 @@
 import classes from "./PostItem.module.css";
-import { useContext, useEffect } from "react";
-import { userCtx } from "../../features/user-ctx";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 
 const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
@@ -39,7 +39,7 @@ const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
       <p className={classes.p}>{content.substring(0, 97)}...</p>
       <div className={classes.pOptions}>
         <span className={classes.span}>more like this</span>
-        {username === userMgr.currentUser && (
+        {username === userMgr.currentUser.username && (
           <div className={classes.userOptions}>
             <span className={classes.span}>delete</span>
             <span className={classes.span}>edit</span>

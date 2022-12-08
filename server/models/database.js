@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
 const postSchema = new mongoose.Schema({
   username: { type: String, require },
   avatar: { type: String },
-  voteCount: { type: Number },
+  voteCount: { type: Number, default: 0 },
   url: { type: String, require },
   title: { type: String },
   content: { type: String },

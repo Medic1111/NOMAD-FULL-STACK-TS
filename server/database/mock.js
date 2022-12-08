@@ -51,6 +51,4 @@ const mockData = [
   },
 ];
 
-const usersMockData = [];
-
 module.exports = { mockData };

@@ -1,14 +1,16 @@
 import classes from "../../components/PostItem/PostItem.module.css";
 import spec_classes from "./SpecPost.module.css";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
-import { useNavigate } from "react-router-dom";
 
 const SpecPost = () => {
   const postMgr = useContext(PostCtx);
   const userMgr = useContext(userCtx);
+
   const nav = useNavigate();
+
   const objToRender = postMgr.specPost;
 
   return (
@@ -29,13 +31,13 @@ const SpecPost = () => {
           <span className={classes.upvoteCount}>{objToRender.voteCount}</span>
         </div>
       </div>
-      <img className={classes.img} src={objToRender.url} />
+      <img className={spec_classes.img} src={objToRender.url} />
 
       <h4 className={classes.title}>{objToRender.title}</h4>
-      <p className={classes.p}>{objToRender.content}</p>
+      <p className={spec_classes.pContent}>{objToRender.content}</p>
       <div className={classes.pOptions}>
         <span className={classes.span}>more like this</span>
-        {objToRender.username === userMgr.currentUser && (
+        {objToRender.username === userMgr.currentUser.username && (
           <div className={classes.userOptions}>
             <span className={classes.span}>delete</span>
             <span className={classes.span}>edit</span>

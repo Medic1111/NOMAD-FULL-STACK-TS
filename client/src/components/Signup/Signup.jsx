@@ -46,6 +46,17 @@ const Signup = () => {
           value={authMgr.userInfo.password}
           onChange={authMgr.onInputChange}
         />
+        <label className={classes.label} htmlFor="avatar">
+          Profile Picture
+        </label>
+        <input
+          className={classes.input}
+          type="text"
+          id="text"
+          name="avatar"
+          value={authMgr.userInfo.avatar}
+          onChange={authMgr.onInputChange}
+        />
         {authMgr.showFeedback && <p className={classes.p}>{authMgr.feedMsg}</p>}
 
         <input className={classes.btn} type="submit" value="Sign Up" />

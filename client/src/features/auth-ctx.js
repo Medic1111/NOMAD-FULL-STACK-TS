@@ -41,6 +41,7 @@ const AuthProvider = (props) => {
     email: "",
     username: "",
     password: "",
+    avatar: "",
   });
 
   const onInputChange = (e) => {
@@ -56,13 +57,14 @@ const AuthProvider = (props) => {
       email: "",
       username: "",
       password: "",
+      avatar: "",
     });
   };
 
   const logoutHandler = () => {
     setToken("");
     setIsAuth(false);
-    userMgr.setCurrentUser("");
+    userMgr.setCurrentUser({});
     localStorage.removeItem("userValidation");
   };
 
@@ -73,10 +75,10 @@ const AuthProvider = (props) => {
     await axios
       .post(url, userInfo, { headers: { authorization: token } })
       .then((serverRes) => {
-        // CHANGE TO OBJ
-        // USERNAME AND URL
-        // NEED INFO FOR NEW POST CREATION
-        userMgr.setCurrentUser(serverRes.data.username);
+        userMgr.setCurrentUser({
+          username: serverRes.data.username,
+          avatar: serverRes.data.avatar,
+        });
         nav("/posts");
         setIsAuth(true);
         const myExp = new Date(new Date().getTime() + 161 * 60 * 60);
@@ -86,6 +88,7 @@ const AuthProvider = (props) => {
             username: serverRes.data.username,
             token: serverRes.data.token,
             expiration: myExp.toISOString(),
+            avatar: serverRes.data.avatar,
           })
         );
         resetUserInfo();
@@ -121,11 +124,14 @@ const AuthProvider = (props) => {
     const storedData = JSON.parse(localStorage.getItem("userValidation"));
     if (storedData && new Date(storedData.expiration) > new Date()) {
       setIsAuth(true);
-      userMgr.setCurrentUser(storedData.username);
+      userMgr.setCurrentUser({
+        username: storedData.username,
+        avatar: storedData.avatar,
+      });
     } else {
-      nav("/auth");
+      nav("/");
       setIsAuth(false);
-      userMgr.setCurrentUser("");
+      userMgr.setCurrentUser({});
     }
   };
 

@@ -20,6 +20,7 @@ const PostsProvider = (props) => {
     await axios
       .get("/api/v1/posts")
       .then((serverRes) => {
+        serverRes.data.reverse();
         setDisplayPosts(serverRes.data);
       })
       .catch((err) => {
