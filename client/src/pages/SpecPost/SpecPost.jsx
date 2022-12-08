@@ -39,7 +39,14 @@ const SpecPost = () => {
         <span className={classes.span}>more like this</span>
         {objToRender.username === userMgr.currentUser.username && (
           <div className={classes.userOptions}>
-            <span className={classes.span}>delete</span>
+            <span
+              className={classes.span}
+              onClick={() => {
+                postMgr.onDelPost(objToRender.username, objToRender._id);
+              }}
+            >
+              delete
+            </span>
             <span className={classes.span}>edit</span>
           </div>
         )}

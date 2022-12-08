@@ -16,7 +16,16 @@ const User = () => {
   return (
     <main className={classes.main}>
       <h1 className={classes.h1}>{userMgr.userProfile.username}</h1>
-      <img className={classes.avatar} src={userMgr.userProfile.avatar} />
+      <div className={classes.avatarBox}>
+        <img
+          className={
+            userMgr.currentUser.username === userId.id
+              ? classes.userAvatar
+              : classes.avatar
+          }
+          src={userMgr.userProfile.avatar}
+        />
+      </div>
       <p className={classes.totalPosts}>
         total posts: {userMgr.userProfile.totalPosts}
       </p>
@@ -35,7 +44,14 @@ const User = () => {
                 <span className={classes.span}>more like this</span>
                 {obj.username === userMgr.currentUser.username && (
                   <div className={classes.userOptions}>
-                    <span className={classes.span}>delete</span>
+                    <span
+                      className={classes.span}
+                      onClick={() => {
+                        postMgr.onDelPost(obj.username, obj._id);
+                      }}
+                    >
+                      delete
+                    </span>
                     <span className={classes.span}>edit</span>
                   </div>
                 )}

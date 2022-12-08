@@ -41,7 +41,12 @@ const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
         <span className={classes.span}>more like this</span>
         {username === userMgr.currentUser.username && (
           <div className={classes.userOptions}>
-            <span className={classes.span}>delete</span>
+            <span
+              className={classes.span}
+              onClick={() => postMgr.onDelPost(username, id)}
+            >
+              delete
+            </span>
             <span className={classes.span}>edit</span>
           </div>
         )}

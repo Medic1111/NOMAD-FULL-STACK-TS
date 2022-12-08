@@ -23,7 +23,7 @@ const registerHandler = async (req, res) => {
         { username, email },
         `${process.env.TOKEN_SECRET}`,
         {
-          expiresIn: "600s",
+          expiresIn: "1hr",
         }
       );
 
@@ -68,7 +68,7 @@ const loginHandler = (req, res) => {
         }
         let token;
         token = jwt.sign({ username }, `${process.env.TOKEN_SECRET}`, {
-          expiresIn: "600s",
+          expiresIn: "1hr",
         });
         res
           .status(200)

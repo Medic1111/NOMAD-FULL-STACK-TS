@@ -1,10 +1,9 @@
 import classes from "./NewPostForm.module.css";
-import axios from "axios";
 import { useState, useContext } from "react";
-import { userCtx } from "../../features/user-ctx";
+import { PostCtx } from "../../features/posts-ctx";
 
-const NewPostForm = () => {
-  const userMgr = useContext(userCtx);
+const NewPostForm = ({ setShowForm }) => {
+  const postMgr = useContext(PostCtx);
 
   const [postData, setPostData] = useState({
     title: "",
@@ -19,23 +18,9 @@ const NewPostForm = () => {
     });
   };
 
-  // ADD THIS TO POST CONTEXT
-
   const handleCreatePost = async (e) => {
     e.preventDefault();
-    let reqBody = {
-      ...postData,
-      username: userMgr.currentUser.username,
-      avatar: userMgr.currentUser.avatar,
-    };
-    await axios
-      .post("/api/v1/posts/new", reqBody)
-      .then((serverRes) => {
-        console.log(serverRes.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    postMgr.onCreateNewPost(postData, setShowForm);
   };
 
   return (
@@ -47,6 +32,8 @@ const NewPostForm = () => {
         className={classes.input}
         type="text"
         placeholder="Title"
+        maxLength={"20"}
+        required
       />
       <textarea
         name="content"
@@ -54,7 +41,9 @@ const NewPostForm = () => {
         onChange={onInputChange}
         className={classes.textArea}
         placeholder="Content"
+        maxLength={"400"}
         rows={27}
+        required
       />
       {/* <label className={classes.fileWrapper}>
         Select Picture
@@ -67,6 +56,7 @@ const NewPostForm = () => {
         className={classes.input}
         type="text"
         placeholder="Img Url"
+        required
       />
       <input value="post" className={classes.submitBtn} type="submit" />
     </form>

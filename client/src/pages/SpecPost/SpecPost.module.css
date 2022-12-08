@@ -8,6 +8,7 @@
   overflow-y: scroll;
   padding: 5vh 5vw;
   gap: 2.5vh;
+  gap: 4vh;
 }
 .pContent {
   max-width: 70%;
@@ -15,4 +16,13 @@
   color: rgba(43, 55, 51, 0.915);
   font-size: 1.7em;
   letter-spacing: 0.7px;
+}
+.img {
+  border-radius: 10px;
+}
+
+@media (max-width: 786px) {
+  .pContent {
+    max-width: 90%;
+  }
 }

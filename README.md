@@ -61,14 +61,18 @@
 - [x] Page will display a Search Form
 - [x] Page will display a toggle button for add new post form
 
-### NEXT:
+# DELETE POST
 
-- Image size on SpecPost Mobile MUCH smaller, please, medic...
+- [x] MOVE SUBMIT CREATE POST TO POSTCTX
 
-- Posts.jsx :
-  - Build Route for delete a post
-  - Trigger DELETE post
-  - SpecPost if user, trigger DELETE post
-  - Profile: trigger DELETE post
+- [x] Posts.jsx : READY TO GO ON THE CLIENT
+  - [x] Build Route for delete a post
+  - [x] Trigger DELETE post
+  - [x] SpecPost if user, trigger DELETE post
+  - [x] Profile: trigger DELETE post
+
+## NEXT
+
+- Allow user to change Profile Image
 
 ### LITTLE THINGS THAT MATTER:

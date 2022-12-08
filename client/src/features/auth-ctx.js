@@ -81,7 +81,7 @@ const AuthProvider = (props) => {
         });
         nav("/posts");
         setIsAuth(true);
-        const myExp = new Date(new Date().getTime() + 161 * 60 * 60);
+        const myExp = new Date(new Date().getTime() + 1000 * 60 * 60);
         localStorage.setItem(
           "userValidation",
           JSON.stringify({

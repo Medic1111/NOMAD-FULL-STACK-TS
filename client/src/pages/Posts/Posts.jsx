@@ -17,7 +17,7 @@ const Posts = () => {
   useEffect(() => {
     authMgr.isTokenExp();
     postsMgr.fetchPostApi();
-  }, []);
+  }, [showForm]);
 
   return (
     <main className={classes.main}>
@@ -34,7 +34,7 @@ const Posts = () => {
           {!showForm ? "+" : "-"}
         </button>
       </aside>
-      {showForm && <NewPostForm />}
+      {showForm && <NewPostForm setShowForm={setShowForm} />}
       <ul className={classes.ul}>
         {postsMgr.displayPosts.map((obj, index) => {
           return (

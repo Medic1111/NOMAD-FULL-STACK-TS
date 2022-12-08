@@ -35,6 +35,8 @@ const UserProvider = (props) => {
         setUserProfile(serverRes.data);
       })
       .catch((err) => {
+        // ADDRESS ERR BY GIVING USER FEEDBACK
+
         console.log(err);
       });
   };
