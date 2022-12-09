@@ -4,7 +4,6 @@ const upVoteControl = async (req, res) => {
   let { username, id } = req.params;
   await Post.findOne({ _id: id })
     .then(async (post) => {
-      console.log(post.username);
       post.voteCount++;
       post.up_by.push(username);
       await post.save((err, update) => {

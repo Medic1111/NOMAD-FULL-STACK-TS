@@ -1,0 +1,17 @@
+.label,
+.labelSelection {
+  margin-top: 1vh;
+  border: transparent;
+  text-align: center;
+  outline: none;
+  width: 4em;
+  font-size: 1.3em;
+  color: white;
+  height: 2.5em;
+  background-color: rgba(118, 195, 173, 0.737);
+
+  cursor: pointer;
+}
+.labelSelection {
+  background-color: rgb(74, 95, 88);
+}

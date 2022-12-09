@@ -5,16 +5,20 @@ import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import AvatarForm from "../../components/AvatarForm/AvatarForm";
 import axios from "axios";
+import EditPostForm from "../../components/EditPostForm/EditPostForm";
 
 const User = () => {
   const userMgr = useContext(userCtx);
   const postMgr = useContext(PostCtx);
   const userId = useParams();
 
-  const [showEdit, setShowEdit] = useState(false);
+  const [showEditAvatar, setShowEditAvatar] = useState(false);
+  const [showEditPost, setShowEditPost] = useState(false);
+  const [postId, setPostId] = useState("");
 
   const handleEditPost = async (id) => {
-    console.log(id);
+    setPostId(id);
+    setShowEditPost(true);
   };
   useEffect(() => {
     userMgr.fetchUser(userId.id);
@@ -22,7 +26,10 @@ const User = () => {
 
   return (
     <main className={classes.main}>
-      {showEdit && <AvatarForm setShowEdit={setShowEdit} />}
+      {showEditPost && (
+        <EditPostForm setShowEditPost={setShowEditPost} id={postId} />
+      )}
+      {showEditAvatar && <AvatarForm setShowEditAvatar={setShowEditAvatar} />}
       <h1 className={classes.h1}>{userMgr.userProfile.username}</h1>
       <div className={classes.avatarBox}>
         <img
@@ -35,7 +42,7 @@ const User = () => {
             userMgr.currentUser.username !== userId.id
               ? null
               : () => {
-                  setShowEdit(true);
+                  setShowEditAvatar(true);
                 }
           }
           src={userMgr.userProfile.avatar}
@@ -74,7 +81,9 @@ const User = () => {
                     </span>
                     <span
                       className={classes.span}
-                      onClick={() => handleEditPost(obj._id)}
+                      onClick={() => {
+                        handleEditPost(obj._id);
+                      }}
                     >
                       edit
                     </span>

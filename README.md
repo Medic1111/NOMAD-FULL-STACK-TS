@@ -85,6 +85,24 @@
 
 ## NEXT
 
-- EDIT
+- EDIT:
+
+  - Create Route for EDIT
+  - Try to reuse CreatePostForm component for it
+  - Set the input value after fetching wanted Post
+  - Trigger Edit, RefetchPosts
+
+- LABELS:
+  - System to be used for filtering MORE LIKE THIS
+  - Green, Blue, Orange, Gray (according to elements in nature present in picture)
+  - Add that to the POST Model in DB
+  - Let user have the option to add label on CREATE POST FORM and EDIT POST
+  - MORE LIKE THIS: Purely filtering through labels
 
 ### LITTLE THINGS THAT MATTER:
+
+- CODE CLEAN UP
+- CLEAN UP ALL CONSOLE.LOGS
+- ADDRESS ALL CATCH BLOCKS WITH FEEDBACK
+- LOADING SPINNER
+- PROTECT ROUTES INDIVIDUALLY (reduce validation api calls)

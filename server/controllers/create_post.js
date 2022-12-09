@@ -1,7 +1,7 @@
 const { Post, User } = require("../models/database");
 
 const createPostControl = async (req, res) => {
-  const { title, content, url, username, avatar } = req.body;
+  const { title, content, url, username, avatar, label } = req.body;
   let user;
   await User.findOne({ username: username })
     .then((doc) => {
@@ -17,6 +17,7 @@ const createPostControl = async (req, res) => {
     url,
     username,
     avatar,
+    label,
   });
   await newPost.save(async (err, doc) => {
     if (err)
