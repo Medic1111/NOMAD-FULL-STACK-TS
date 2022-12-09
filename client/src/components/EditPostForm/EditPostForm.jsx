@@ -3,10 +3,12 @@ import spec_classes from "./EditPostForm.module.css";
 import { useState, useContext, useEffect } from "react";
 import { PostCtx } from "../../features/posts-ctx";
 import axios from "axios";
+import Label from "../Label/Label";
 
 const EditPostForm = ({ setShowEditPost, id }) => {
   const postMgr = useContext(PostCtx);
   const [oldData, setOldData] = useState({});
+  const [label, setLabel] = useState("none");
 
   const fetchPost = async () => {
     await axios
@@ -28,7 +30,7 @@ const EditPostForm = ({ setShowEditPost, id }) => {
 
   const handleEditPost = async (e) => {
     e.preventDefault();
-    postMgr.onEditPost(id, oldData, setShowEditPost);
+    postMgr.onEditPost(id, { ...oldData, label }, setShowEditPost);
   };
 
   return (
@@ -63,6 +65,7 @@ const EditPostForm = ({ setShowEditPost, id }) => {
         placeholder="Img Url"
         required
       />
+      <Label label={label} setLabel={setLabel} />
       <input value="Edit post" className={classes.submitBtn} type="submit" />
       <button
         className={classes.submitBtn}

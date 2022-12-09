@@ -1,10 +1,12 @@
 import classes from "./NewPostForm.module.css";
 import { useState, useContext } from "react";
 import { PostCtx } from "../../features/posts-ctx";
+import Label from "../Label/Label";
 
 const NewPostForm = ({ setShowForm }) => {
   const postMgr = useContext(PostCtx);
 
+  const [label, setLabel] = useState("none");
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -20,8 +22,10 @@ const NewPostForm = ({ setShowForm }) => {
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
-    postMgr.onCreateNewPost(postData, setShowForm);
+    postMgr.onCreateNewPost({ ...postData, label }, setShowForm);
   };
+
+  console.log({ ...postData, label });
 
   return (
     <form onSubmit={handleCreatePost} className={classes.form}>
@@ -55,6 +59,7 @@ const NewPostForm = ({ setShowForm }) => {
         placeholder="Img Url"
         required
       />
+      <Label label={label} setLabel={setLabel} />
       <input value="post" className={classes.submitBtn} type="submit" />
     </form>
   );
