@@ -88,5 +88,3 @@
 - EDIT
 
 ### LITTLE THINGS THAT MATTER:
-
-- Images Sizing

@@ -21,10 +21,18 @@
   border-radius: 10px;
   width: 50%;
   height: auto;
+  min-height: 30rem;
+  max-height: 35rem;
+  object-fit: fill;
+  object-fit: cover;
 }
 
 @media (max-width: 786px) {
   .pContent {
     max-width: 90%;
+  }
+  .img {
+    min-height: unset;
+    max-height: unset;
   }
 }
