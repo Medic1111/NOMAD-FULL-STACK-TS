@@ -1,7 +1,7 @@
 # PAGES: STRUCTURE
 
-- [x] Home
-- [x] Auth
+- [x] Home- RECHECKED
+- [x] Auth- RECHECKED
 - [ ] Posts
 - [ ] Profile
 - [ ] SpecPost
@@ -60,3 +60,31 @@
 - [x] If it's the logged user's post, it will have the option to delete and edit
 - [x] Page will display a Search Form
 - [x] Page will display a toggle button for add new post form
+
+# DELETE POST
+
+- [x] MOVE SUBMIT CREATE POST TO POSTCTX
+
+- [x] Posts.jsx : READY TO GO ON THE CLIENT
+  - [x] Build Route for delete a post
+  - [x] Trigger DELETE post
+  - [x] SpecPost if user, trigger DELETE post
+  - [x] Profile: trigger DELETE post
+
+# UPDATE AVATAR
+
+- [x] Build route to update profile picture
+- [x] Build Form/Component to send put call
+- [x] Reset token
+
+# UPVOTE
+
+- [x] Create Route for UPVOTE
+- [x] Triggered in PostItem and SpecPost
+- [x] Create API call on client and reuse on both components that depend on them
+
+## NEXT
+
+- EDIT
+
+### LITTLE THINGS THAT MATTER:

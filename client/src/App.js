@@ -1,4 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AuthCtx } from "./features/auth-ctx";
 import Home from "./pages/Home/Home";
 import Auth from "./pages/Auth/Auth";
 import Posts from "./pages/Posts/Posts";
@@ -6,9 +8,6 @@ import User from "./pages/User/User";
 import SpecPost from "./pages/SpecPost/SpecPost";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
-
-import { useContext, useEffect } from "react";
-import { AuthCtx } from "./features/auth-ctx";
 
 function App() {
   const authMgr = useContext(AuthCtx);

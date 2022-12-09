@@ -42,9 +42,14 @@
   width: 5em;
   height: 5em;
   border-radius: 2.5em;
+  object-fit: cover;
 }
 .img {
   width: 70%;
+  height: 20rem;
+  min-height: 20rem;
+  max-height: 25rem;
+  object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -77,10 +82,15 @@
 .upvoteCount {
   font-size: 1.4em;
 }
-.upvote {
+.upvote,
+.upvoted {
   font-size: 2em;
   cursor: pointer;
   color: rgb(118, 195, 173);
+}
+
+.upvoted {
+  color: rgb(184, 189, 188);
 }
 .pOptions {
   height: 5vh;

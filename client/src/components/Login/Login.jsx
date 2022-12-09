@@ -1,6 +1,6 @@
+import classes from "./Login.module.css";
 import { useContext } from "react";
 import { AuthCtx } from "../../features/auth-ctx";
-import classes from "./Login.module.css";
 
 const Login = () => {
   const authMgr = useContext(AuthCtx);
@@ -24,6 +24,8 @@ const Login = () => {
           name="username"
           value={authMgr.userInfo.username}
           onChange={authMgr.onInputChange}
+          required
+          maxLength={"14"}
         />
         <label className={classes.label} htmlFor="password">
           Password

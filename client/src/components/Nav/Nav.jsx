@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import classes from "./Nav.module.css";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthCtx } from "../../features/auth-ctx";
 import { userCtx } from "../../features/user-ctx";
 
@@ -9,12 +9,20 @@ const Nav = () => {
   const userMgr = useContext(userCtx);
   return (
     <nav className={classes.nav}>
-      <Link className={classes.link} to="/">
-        Home
-      </Link>
-      <Link onClick={authMgr.verifyToken} className={classes.link} to="/posts">
-        Posts
-      </Link>
+      {userMgr.isAuth && (
+        <Link className={classes.link} to="/">
+          Home
+        </Link>
+      )}
+      {authMgr.isAuth && (
+        <Link
+          onClick={authMgr.verifyToken}
+          className={classes.link}
+          to="/posts"
+        >
+          Posts
+        </Link>
+      )}
       {authMgr.isAuth || (
         <>
           <Link
@@ -36,7 +44,13 @@ const Nav = () => {
       )}
       {authMgr.isAuth && (
         <>
-          <Link className={classes.link} to={`/users/${userMgr.currentUser}`}>
+          <Link
+            onClick={() => {
+              userMgr.fetchUser(userMgr.currentUser.username);
+            }}
+            className={classes.link}
+            to={`/users/${userMgr.currentUser.username}`}
+          >
             Profile
           </Link>
           <Link onClick={authMgr.logoutHandler} className={classes.link} to="/">

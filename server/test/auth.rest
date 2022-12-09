@@ -1,3 +1,39 @@
-#
+# Gets All Posts
 
-GET http://localhost:3002/ HTTP/1.1
+GET http://localhost:3002/api/v1/posts HTTP/1.1
+Content-Type: application/json
+
+###
+
+# Gets Spec Post
+
+GET http://localhost:3002/api/v1/posts/638f94e6b55ccf3141be1be9 HTTP/1.1
+Content-Type:application/json
+
+###
+
+# Gets Spec User 
+
+GET http://localhost:3002/api/v1/users/medic1111 HTTP/1.1
+Content-Type:application/json
+
+### 
+
+# Register User
+
+POST http://localhost:3002/api/register HTTP/1.1
+Content-Type:application/json
+
+{
+"email": "testOne@gmail.com",
+"username": "medic1111",
+"password" : "password",
+"avatar": "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+"posts": [
+  ]
+}
+
+# CREATE POST TEST AND ADD POSTS TO A MOCK USER
+# ENSURE CLIENTS RESPONDS ADEQUATELY TO THE DATA
+# SINGLE USER FOR TESTING WILL DO
+

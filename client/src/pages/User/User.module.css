@@ -1,0 +1,165 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 5vh 5vw;
+  position: relative;
+}
+.h1 {
+  font-size: 2.2em;
+  letter-spacing: 1.2px;
+  color: rgb(43, 55, 51);
+  background-color: rgba(0, 128, 92, 0.131);
+  background-color: rgba(118, 195, 173, 0.737);
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  padding: 1em;
+}
+.avatar,
+.userAvatar {
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 999px;
+  margin: 1em;
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+}
+
+.userAvatar {
+  cursor: pointer;
+}
+
+.totalPosts {
+  font-size: 1.8em;
+  letter-spacing: 0.8px;
+  color: rgb(43, 55, 51);
+  background-color: rgba(0, 128, 92, 0.131);
+  background-color: rgba(118, 195, 173, 0.737);
+
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5vh;
+  padding: 1em;
+}
+.ul {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  gap: 5vh;
+  background-color: rgba(118, 195, 173, 0.046);
+  background-color: rgba(5, 47, 33, 0.024);
+}
+
+.li {
+  /* background-color: rgba(5, 47, 33, 0.024); */
+  min-width: 31.25vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5vh 1em;
+  gap: 1em;
+  border-radius: 10px;
+}
+.li:hover {
+  transform: scale(1.05);
+  transition: 0.25s;
+}
+
+.avatarBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(118, 195, 173, 0.737);
+}
+
+.img {
+  /* width: 50%;
+  border-radius: 10px;
+  cursor: pointer; */
+  width: 60%;
+  height: 30rem;
+  max-height: 25rem;
+  border-radius: 10px;
+  cursor: pointer;
+  min-height: 30rem;
+  max-height: 35rem;
+  object-fit: fill;
+}
+.title {
+  font-size: 2.2em;
+  text-align: center;
+  letter-spacing: 1.2px;
+  text-transform: capitalize;
+  color: rgb(43, 55, 51);
+  max-width: 70%;
+  cursor: pointer;
+}
+
+.p {
+  max-width: 70%;
+  text-align: center;
+  color: rgba(43, 55, 51, 0.915);
+  font-size: 1.7em;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
+}
+
+.pOptions {
+  height: 5vh;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: flex-end;
+}
+.span {
+  color: rgb(118, 195, 173);
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.userOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75em;
+}
+
+@media (max-width: 798px) {
+  .li {
+    min-width: 95%;
+    padding: 2.5rem;
+    height: auto;
+  }
+  .img {
+    width: 70%;
+    height: 20rem;
+    max-height: 25rem;
+    border-radius: 10px;
+  }
+  .li:hover {
+    transform: unset;
+  }
+  .avatar {
+    width: 5em;
+    height: 5em;
+    min-height: 5rem;
+    max-height: 5rem;
+    object-fit: cover;
+  }
+}

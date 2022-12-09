@@ -1,18 +1,22 @@
-import { createContext, useState } from "react";
-import dummyData from "../data/dummy";
+import axios from "axios";
+import { createContext, useContext, useState } from "react";
+import { PostCtx } from "./posts-ctx";
+
 export const userCtx = createContext({
-  currentUser: "",
+  currentUser: {},
   setCurrentUser: () => {},
   userProfile: {},
   setUserProfile: () => {},
   fetchUser: (username) => {},
+  authorOf: () => {},
 });
 
 const UserProvider = (props) => {
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+  const postsMgr = useContext(PostCtx);
 
   const authorOf = (userToFind) => {
-    return dummyData.filter((obj) => {
+    return postsMgr.displayPosts.filter((obj) => {
       return obj.username === userToFind;
     });
   };
@@ -20,20 +24,21 @@ const UserProvider = (props) => {
   const [userProfile, setUserProfile] = useState({
     username: "",
     avatar: "",
-    totalPosts: "",
-    posts: "",
+    totalPosts: 0,
+    posts: [],
   });
 
-  const fetchUser = (username) => {
-    // REFACTOR TO API REQUEST
-    setUserProfile({
-      username: username,
-      avatar: "",
-      totalPosts: authorOf(username).length,
-      posts: authorOf(username),
-    });
+  const fetchUser = async (username) => {
+    await axios
+      .get(`/api/v1/users/${username}`)
+      .then((serverRes) => {
+        setUserProfile(serverRes.data);
+      })
+      .catch((err) => {
+        // ADDRESS ERR BY GIVING USER FEEDBACK
 
-    console.log(userProfile);
+        console.log(err);
+      });
   };
 
   return (
@@ -44,6 +49,7 @@ const UserProvider = (props) => {
         userProfile,
         setUserProfile,
         fetchUser,
+        authorOf,
       }}
     >
       {props.children}
