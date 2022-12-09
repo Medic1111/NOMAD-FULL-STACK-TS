@@ -20,7 +20,7 @@ const createPostRoute = require("./routes/create_post");
 const delPostRoute = require("./routes/del_post");
 const avatarRoute = require("./routes/avatar");
 const upVoteRoute = require("./routes/up_vote");
-
+const editPostRoute = require("./routes/edit_post");
 // SEED DB
 const seedRoute = require("./database/seedRoute");
 
@@ -43,6 +43,7 @@ app.use("/", createPostRoute);
 app.use("/", delPostRoute);
 app.use("/", avatarRoute);
 app.use("/", upVoteRoute);
+app.use("/", editPostRoute);
 
 // DB CONNECTION
 

@@ -45,10 +45,7 @@ const NewPostForm = ({ setShowForm }) => {
         rows={27}
         required
       />
-      {/* <label className={classes.fileWrapper}>
-        Select Picture
-        <input className={classes.file} type="file" />
-      </label> */}
+
       <input
         name="url"
         value={postData.url}

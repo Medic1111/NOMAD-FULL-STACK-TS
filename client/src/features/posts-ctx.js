@@ -13,6 +13,7 @@ export const PostCtx = createContext({
   onCreateNewPost: () => {},
   onDelPost: () => {},
   onUpVote: (id, obj) => {},
+  onEditPost: (id) => {},
 });
 
 const PostsProvider = (props) => {
@@ -34,16 +35,17 @@ const PostsProvider = (props) => {
       });
   };
 
-  const fetchSpecPost = async (id) => {
+  const fetchSpecPost = async (id, prevent) => {
     await axios
       .get(`/api/v1/posts/${id}`)
       .then((serverRes) => {
         setSpecPost(serverRes.data);
-        nav(`/posts/${id}`);
+        if (!prevent) {
+          nav(`/posts/${id}`);
+        }
       })
       .catch((err) => {
         // ADDRESS ERR BY GIVING USER FEEDBACK
-
         console.log(err);
       });
   };
@@ -57,19 +59,15 @@ const PostsProvider = (props) => {
     await axios
       .post("/api/v1/posts/new", reqBody)
       .then((serverRes) => {
-        console.log(serverRes.data);
-
         setShowForm(false);
       })
       .catch((err) => {
         // ADDRESS ERR BY GIVING USER FEEDBACK
-
         console.log(err);
       });
   };
 
   const onDelPost = async (username, id) => {
-    console.log(username, id);
     await axios
       .put(`/api/v1/${username}/posts/delete/${id}`)
       .then((serverRes) => {
@@ -93,9 +91,22 @@ const PostsProvider = (props) => {
       })
       .catch((err) => {
         // ADDRESS ERR BY GIVING FEEDBACK
-
         console.log(err);
       });
+  };
+
+  const onEditPost = async (id, oldData, setShowEditPost) => {
+    await axios
+      .patch(
+        `/api/v1/${userMgr.currentUser.username}/posts/${id}/edit`,
+        oldData
+      )
+      .then((serverRes) => {
+        fetchPostApi();
+        setShowEditPost(false);
+        nav("/posts");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -110,6 +121,7 @@ const PostsProvider = (props) => {
         onCreateNewPost,
         onDelPost,
         onUpVote,
+        onEditPost,
       }}
     >
       {props.children}

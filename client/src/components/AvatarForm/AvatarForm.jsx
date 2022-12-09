@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { userCtx } from "../../features/user-ctx";
 import classes from "./AvatarForm.module.css";
 
-const AvatarForm = (setShowEdit) => {
+const AvatarForm = (setShowEditAvatar) => {
   const userMgr = useContext(userCtx);
   const [newUrl, setNewUrl] = useState("");
 
@@ -43,7 +43,10 @@ const AvatarForm = (setShowEdit) => {
         type="submit"
         value="Update"
       />
-      <button className={classes.inputBtn} onClick={() => setShowEdit(false)}>
+      <button
+        className={classes.inputBtn}
+        onClick={() => setShowEditAvatar(false)}
+      >
         Cancel
       </button>
     </form>

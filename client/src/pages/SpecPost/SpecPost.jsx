@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
+import EditPostForm from "../../components/EditPostForm/EditPostForm";
 
 const SpecPost = () => {
   const postMgr = useContext(PostCtx);
@@ -11,9 +12,17 @@ const SpecPost = () => {
   const nav = useNavigate();
 
   const [objToRender, setObjToRender] = useState(postMgr.specPost);
+  const [showEditPost, setShowEditPost] = useState(false);
+
+  const handleEditPost = () => {
+    setShowEditPost(true);
+  };
 
   return (
     <main className={spec_classes.main}>
+      {showEditPost && (
+        <EditPostForm id={objToRender._id} setShowEditPost={setShowEditPost} />
+      )}
       <div className={classes.userBox}>
         <div
           className={classes.avatarBox}
@@ -59,7 +68,9 @@ const SpecPost = () => {
             >
               delete
             </span>
-            <span className={classes.span}>edit</span>
+            <span className={classes.span} onClick={() => handleEditPost()}>
+              edit
+            </span>
           </div>
         )}
       </div>

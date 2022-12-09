@@ -26,7 +26,7 @@ const Posts = () => {
           Welcome {userMgr.currentUser.username}
         </p>
 
-        <SearchForm />
+        {/* <SearchForm /> */}
         <button
           className={classes.btnCreate}
           onClick={() => setShowForm((prev) => !prev)}
