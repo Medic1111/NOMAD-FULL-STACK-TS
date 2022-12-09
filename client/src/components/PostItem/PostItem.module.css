@@ -79,10 +79,15 @@
 .upvoteCount {
   font-size: 1.4em;
 }
-.upvote {
+.upvote,
+.upvoted {
   font-size: 2em;
   cursor: pointer;
   color: rgb(118, 195, 173);
+}
+
+.upvoted {
+  color: rgb(184, 189, 188);
 }
 .pOptions {
   height: 5vh;

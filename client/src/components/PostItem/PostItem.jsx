@@ -4,14 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 
-const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
+const PostItem = ({
+  avatar,
+  username,
+  voteCount,
+  url,
+  title,
+  content,
+  id,
+  up_by,
+}) => {
   const userMgr = useContext(userCtx);
   const postMgr = useContext(PostCtx);
   const nav = useNavigate();
-
-  const directToPostSpec = () => {
-    postMgr.fetchSpecPost(id);
-  };
 
   return (
     <li className={classes.li}>
@@ -27,13 +32,30 @@ const PostItem = ({ avatar, username, voteCount, url, title, content, id }) => {
           <p className={classes.username}>{username}</p>
         </div>
         <div className={classes.voteBox}>
-          <span className={classes.upvote}>⬆</span>
+          <span
+            className={
+              up_by.includes(userMgr.currentUser.username)
+                ? classes.upvoted
+                : classes.upvote
+            }
+            onClick={() => {
+              return up_by.includes(userMgr.currentUser.username)
+                ? null
+                : postMgr.onUpVote(id);
+            }}
+          >
+            ⬆
+          </span>
           <span className={classes.upvoteCount}>{voteCount}</span>
         </div>
       </div>
-      <img onClick={directToPostSpec} className={classes.img} src={url} />
+      <img
+        onClick={() => postMgr.fetchSpecPost(id)}
+        className={classes.img}
+        src={url}
+      />
 
-      <h4 onClick={directToPostSpec} className={classes.title}>
+      <h4 onClick={() => postMgr.fetchSpecPost(id)} className={classes.title}>
         {title}
       </h4>
       <p className={classes.p}>{content.substring(0, 97)}...</p>

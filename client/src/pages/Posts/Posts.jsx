@@ -47,6 +47,7 @@ const Posts = () => {
               title={obj.title}
               content={obj.content}
               url={obj.url}
+              up_by={obj.up_by}
             />
           );
         })}

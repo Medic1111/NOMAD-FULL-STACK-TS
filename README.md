@@ -71,8 +71,22 @@
   - [x] SpecPost if user, trigger DELETE post
   - [x] Profile: trigger DELETE post
 
+# UPDATE AVATAR
+
+- [x] Build route to update profile picture
+- [x] Build Form/Component to send put call
+- [x] Reset token
+
+# UPVOTE
+
+- [x] Create Route for UPVOTE
+- [x] Triggered in PostItem and SpecPost
+- [x] Create API call on client and reuse on both components that depend on them
+
 ## NEXT
 
-- Allow user to change Profile Image
+- EDIT
 
 ### LITTLE THINGS THAT MATTER:
+
+- Images Sizing

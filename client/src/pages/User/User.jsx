@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import AvatarForm from "../../components/AvatarForm/AvatarForm";
+import axios from "axios";
 
 const User = () => {
   const userMgr = useContext(userCtx);
@@ -12,6 +13,9 @@ const User = () => {
 
   const [showEdit, setShowEdit] = useState(false);
 
+  const handleEditPost = async (id) => {
+    console.log(id);
+  };
   useEffect(() => {
     userMgr.fetchUser(userId.id);
   }, []);
@@ -43,13 +47,18 @@ const User = () => {
       <ul className={classes.ul}>
         {userMgr.userProfile.posts.map((obj, index) => {
           return (
-            <li
-              key={`PROFILE_POST_${index}`}
-              className={classes.li}
-              onClick={() => postMgr.fetchSpecPost(obj._id)}
-            >
-              <img className={classes.img} src={obj.url} />
-              <h4 className={classes.title}>{obj.title}</h4>
+            <li key={`PROFILE_POST_${index}`} className={classes.li}>
+              <img
+                onClick={() => postMgr.fetchSpecPost(obj._id)}
+                className={classes.img}
+                src={obj.url}
+              />
+              <h4
+                onClick={() => postMgr.fetchSpecPost(obj._id)}
+                className={classes.title}
+              >
+                {obj.title}
+              </h4>
               <p className={classes.p}>{obj.content.substring(0, 95)}...</p>
               <div className={classes.pOptions}>
                 <span className={classes.span}>more like this</span>
@@ -63,7 +72,12 @@ const User = () => {
                     >
                       delete
                     </span>
-                    <span className={classes.span}>edit</span>
+                    <span
+                      className={classes.span}
+                      onClick={() => handleEditPost(obj._id)}
+                    >
+                      edit
+                    </span>
                   </div>
                 )}
               </div>

@@ -1,6 +1,6 @@
 import classes from "../../components/PostItem/PostItem.module.css";
 import spec_classes from "./SpecPost.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
@@ -8,10 +8,9 @@ import { userCtx } from "../../features/user-ctx";
 const SpecPost = () => {
   const postMgr = useContext(PostCtx);
   const userMgr = useContext(userCtx);
-
   const nav = useNavigate();
 
-  const objToRender = postMgr.specPost;
+  const [objToRender, setObjToRender] = useState(postMgr.specPost);
 
   return (
     <main className={spec_classes.main}>
@@ -27,7 +26,20 @@ const SpecPost = () => {
           <p className={classes.username}>{objToRender.username}</p>
         </div>
         <div className={classes.voteBox}>
-          <span className={classes.upvote}>⬆</span>
+          <span
+            className={
+              objToRender.up_by.includes(userMgr.currentUser.username)
+                ? classes.upvoted
+                : classes.upvote
+            }
+            onClick={() => {
+              return objToRender.up_by.includes(userMgr.currentUser.username)
+                ? null
+                : postMgr.onUpVote(objToRender._id, setObjToRender);
+            }}
+          >
+            ⬆
+          </span>
           <span className={classes.upvoteCount}>{objToRender.voteCount}</span>
         </div>
       </div>
@@ -41,9 +53,9 @@ const SpecPost = () => {
           <div className={classes.userOptions}>
             <span
               className={classes.span}
-              onClick={() => {
-                postMgr.onDelPost(objToRender.username, objToRender._id);
-              }}
+              onClick={() =>
+                postMgr.onDelPost(objToRender.username, objToRender._id)
+              }
             >
               delete
             </span>

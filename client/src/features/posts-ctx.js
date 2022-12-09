@@ -12,6 +12,7 @@ export const PostCtx = createContext({
   setSpecPost: () => {},
   onCreateNewPost: () => {},
   onDelPost: () => {},
+  onUpVote: (id, obj) => {},
 });
 
 const PostsProvider = (props) => {
@@ -81,6 +82,22 @@ const PostsProvider = (props) => {
       });
   };
 
+  const onUpVote = async (id, setObjToRender) => {
+    await axios
+      .patch(`/api/v1/${userMgr.currentUser.username}/posts/${id}/upvote`)
+      .then((serverRes) => {
+        fetchPostApi();
+        if (setObjToRender) {
+          setObjToRender(serverRes.data);
+        }
+      })
+      .catch((err) => {
+        // ADDRESS ERR BY GIVING FEEDBACK
+
+        console.log(err);
+      });
+  };
+
   return (
     <PostCtx.Provider
       value={{
@@ -92,6 +109,7 @@ const PostsProvider = (props) => {
         setSpecPost,
         onCreateNewPost,
         onDelPost,
+        onUpVote,
       }}
     >
       {props.children}

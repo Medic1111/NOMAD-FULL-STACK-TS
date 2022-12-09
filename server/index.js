@@ -19,10 +19,10 @@ const getUserRoute = require("./routes/get_user");
 const createPostRoute = require("./routes/create_post");
 const delPostRoute = require("./routes/del_post");
 const avatarRoute = require("./routes/avatar");
+const upVoteRoute = require("./routes/up_vote");
+
 // SEED DB
 const seedRoute = require("./database/seedRoute");
-
-const { User } = require("./models/database");
 
 // MIDDLEWARES
 
@@ -42,6 +42,7 @@ app.use("/", getUserRoute);
 app.use("/", createPostRoute);
 app.use("/", delPostRoute);
 app.use("/", avatarRoute);
+app.use("/", upVoteRoute);
 
 // DB CONNECTION
 
