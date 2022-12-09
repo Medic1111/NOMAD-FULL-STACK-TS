@@ -68,7 +68,7 @@ const User = () => {
               </h4>
               <p className={classes.p}>{obj.content.substring(0, 95)}...</p>
               <div className={classes.pOptions}>
-                <span className={classes.span}>more like this</span>
+                {/* <span className={classes.span}>more like this</span> */}
                 {obj.username === userMgr.currentUser.username && (
                   <div className={classes.userOptions}>
                     <span
