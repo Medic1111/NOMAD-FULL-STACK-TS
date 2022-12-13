@@ -63,7 +63,24 @@ const SpecPost: React.FC = () => {
       <h4 className={classes.title}>{objToRender.title}</h4>
       <p className={spec_classes.pContent}>{objToRender.content}</p>
       <div className={classes.pOptions}>
-        <span className={classes.span}>more like this</span>
+        {!postMgr.isFiltering ? (
+          <span
+            className={classes.span}
+            onClick={() => postMgr.onMoreLikeThis(objToRender.label)}
+          >
+            more like this
+          </span>
+        ) : (
+          <span
+            className={classes.span}
+            onClick={() => {
+              postMgr.setIsFiltering(false);
+              postMgr.fetchPostApi();
+            }}
+          >
+            x {objToRender.label}
+          </span>
+        )}
         <div className={classes.userOptions}>
           {objToRender.username === userMgr.currentUser.username && (
             <OptionBox username={objToRender.username} _id={objToRender._id} />

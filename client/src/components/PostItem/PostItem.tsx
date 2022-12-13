@@ -52,7 +52,24 @@ const PostItem: React.FC<{ obj: Post }> = ({ obj }) => {
       </h4>
       <p className={classes.p}>{obj.content.substring(0, 97)}...</p>
       <div className={classes.pOptions}>
-        <span className={classes.span}>more like this</span>
+        {!postsMgr.isFiltering ? (
+          <span
+            className={classes.span}
+            onClick={() => postsMgr.onMoreLikeThis(obj.label)}
+          >
+            more like this
+          </span>
+        ) : (
+          <span
+            className={classes.span}
+            onClick={() => {
+              postsMgr.setIsFiltering(false);
+              postsMgr.fetchPostApi();
+            }}
+          >
+            x {obj.label}
+          </span>
+        )}
         {obj.username === userMgr.currentUser.username && (
           <OptionBox username={obj.username} _id={obj._id} />
         )}

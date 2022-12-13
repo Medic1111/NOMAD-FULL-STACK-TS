@@ -13,6 +13,9 @@ const Posts = () => {
   const uiMgr = useContext(UiCtx);
 
   const fetchPostApi = async () => {
+    if (postsMgr.isFiltering) {
+      return;
+    }
     postMgr.fetchPostApi();
   };
   useEffect(() => {
