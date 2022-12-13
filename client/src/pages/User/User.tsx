@@ -6,6 +6,7 @@ import OptionBox from "../../components/OptionBox/OptionBox";
 import { userCtx } from "../../features/user-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import { PostCtx } from "../../features/posts-ctx";
+import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
 
 const User = () => {
   const nav = useNavigate();
@@ -56,24 +57,7 @@ const User = () => {
               </h4>
               <p className={classes.p}>{obj.content.substring(0, 95)}...</p>
               <div className={classes.pOptions}>
-                {!postMgr.isFiltering ? (
-                  <span
-                    className={classes.span}
-                    onClick={() => postMgr.onMoreLikeThis(obj.label)}
-                  >
-                    more like this
-                  </span>
-                ) : (
-                  <span
-                    className={classes.span}
-                    onClick={() => {
-                      postMgr.setIsFiltering(false);
-                      postMgr.fetchPostApi();
-                    }}
-                  >
-                    x {obj.label}
-                  </span>
-                )}
+                <MoreLikeThis label={obj.label} />
                 {obj.username === userMgr.currentUser.username && (
                   <OptionBox username={obj.username} _id={obj._id} />
                 )}

@@ -22,3 +22,5 @@
 ### PRIORITY
 
 - [ ] Ensure USER component is accessible for other than current users, from URL
+
+- [ ] Put MORE LIKE THIS as its own components and Isolate logic
