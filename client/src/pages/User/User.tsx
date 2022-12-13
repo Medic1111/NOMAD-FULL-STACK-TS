@@ -5,14 +5,12 @@ import AvatarForm from "../../components/AvatarForm/AvatarForm";
 import OptionBox from "../../components/OptionBox/OptionBox";
 import { userCtx } from "../../features/user-ctx";
 import { UiCtx } from "../../features/ui-ctx";
-import { PostCtx } from "../../features/posts-ctx";
 import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
 
 const User = () => {
   const nav = useNavigate();
   const userMgr = useContext(userCtx);
   const uiMgr = useContext(UiCtx);
-  const postMgr = useContext(PostCtx);
   const userId = useParams();
 
   useEffect(() => {

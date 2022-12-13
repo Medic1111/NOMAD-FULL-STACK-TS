@@ -13,7 +13,12 @@ const Posts = () => {
   const uiMgr = useContext(UiCtx);
 
   const fetchPostApi = async () => {
-    if (postsMgr.isFiltering) {
+    if (
+      postsMgr.isFiltering ||
+      uiMgr.state.createPost ||
+      uiMgr.state.editAvatar ||
+      uiMgr.state.editPost
+    ) {
       return;
     }
     postMgr.fetchPostApi();

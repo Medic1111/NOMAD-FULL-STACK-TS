@@ -16,8 +16,12 @@ const EditPostForm: React.FC = () => {
   const fetchPost = async () => {
     await axios
       .get(`/api/v1/posts/${postMgr.postIdToEdit}`)
-      .then((serverRes) => setOldData(serverRes.data))
-      .catch((err) => console.log(err));
+      .then((serverRes) => {
+        setOldData(serverRes.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {

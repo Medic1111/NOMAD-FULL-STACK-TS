@@ -7,21 +7,28 @@ import OptionBox from "../../components/OptionBox/OptionBox";
 import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
 import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
+import { UiCtx } from "../../features/ui-ctx";
 
 const SpecPost: React.FC = () => {
   const postMgr = useContext(PostCtx);
   const userMgr = useContext(userCtx);
+  const uiMgr = useContext(UiCtx);
   const nav = useNavigate();
   const postId = useParams();
 
   const [objToRender, setObjToRender] = useState(postMgr.specPost);
 
   const fetchPost = async () => {
+    uiMgr.dispatch({ type: "LOADING" });
     await axios
       .get(`/api/v1/posts/${postId.id}`)
-      .then((serverRes) => setObjToRender(serverRes.data))
+      .then((serverRes) => {
+        setObjToRender(serverRes.data);
+        uiMgr.dispatch({ type: "CLOSE" });
+      })
       .catch((err) => {
         console.log(err);
+        uiMgr.dispatch({ type: "CLOSE" });
       });
   };
 
