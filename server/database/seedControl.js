@@ -1,12 +1,26 @@
-const { Post } = require("../models/database");
-const { mockData } = require("./mock");
+const { Post, User } = require("../models/database");
+const { mockData, mockUsers } = require("./mock");
 
 const seedControl = async (req, res) => {
   await Post.insertMany(mockData)
-    .then((serverRes) => res.status(201).json("DB Seeded"))
+    .then((serverRes) => console.log("Posts seeded"))
     .catch((err) => {
-      res.status(500).json({ message: "Something went wrong with Mongo" });
+      console.log(err);
+      return res
+        .status(500)
+        .json({ message: "Something went wrong with Mongo" });
     });
+
+  await User.insertMany(mockUsers)
+    .then((serverRes) => console.log("Users Seeded"))
+    .catch((err) => {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ message: "Something went wrong with Mongo" });
+    });
+
+  res.status(201).json("DB Seeded");
 };
 
 module.exports = { seedControl };

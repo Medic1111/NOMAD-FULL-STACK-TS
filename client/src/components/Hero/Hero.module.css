@@ -66,6 +66,12 @@
   cursor: pointer;
   letter-spacing: 0.9px;
 }
+.test {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .btn:hover {
   background-color: rgba(87, 179, 153, 0.788);

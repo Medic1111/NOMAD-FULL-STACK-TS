@@ -17,34 +17,12 @@ const editPostControl = async (req, res) => {
           return res
             .status(500)
             .json({ message: "Oops, something went wrong" });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      return res.status(500).json({ message: "Oops, something went wrong" });
-    });
-
-  await User.findOne({ username: username })
-    .then(async (user) => {
-      let filteredPost = await user.posts.filter((post) => {
-        return String(post._id) !== id;
-      });
-
-      filteredPost.push(newPost);
-      user.posts = filteredPost;
-
-      await user.save((err, saved) => {
-        if (err)
-          return res
-            .status(500)
-            .json({ message: "Oops, something went wrong" });
-
         return res.status(200).json({ message: "POST EDITED" });
       });
     })
-    .catch(() =>
-      res.status(500).json({ message: "Oops, something went wrong" })
-    );
+    .catch((err) => {
+      return res.status(500).json({ message: "Oops, something went wrong" });
+    });
 };
 
 module.exports = { editPostControl };
