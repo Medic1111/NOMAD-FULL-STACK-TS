@@ -6,6 +6,7 @@ import axios from "axios";
 import OptionBox from "../../components/OptionBox/OptionBox";
 import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
+import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
 
 const SpecPost: React.FC = () => {
   const postMgr = useContext(PostCtx);
@@ -59,28 +60,10 @@ const SpecPost: React.FC = () => {
         </div>
       </div>
       <img className={spec_classes.img} src={objToRender.url} />
-
       <h4 className={classes.title}>{objToRender.title}</h4>
       <p className={spec_classes.pContent}>{objToRender.content}</p>
       <div className={classes.pOptions}>
-        {!postMgr.isFiltering ? (
-          <span
-            className={classes.span}
-            onClick={() => postMgr.onMoreLikeThis(objToRender.label)}
-          >
-            more like this
-          </span>
-        ) : (
-          <span
-            className={classes.span}
-            onClick={() => {
-              postMgr.setIsFiltering(false);
-              postMgr.fetchPostApi();
-            }}
-          >
-            x {objToRender.label}
-          </span>
-        )}
+        <MoreLikeThis label={objToRender.label} />
         <div className={classes.userOptions}>
           {objToRender.username === userMgr.currentUser.username && (
             <OptionBox username={objToRender.username} _id={objToRender._id} />

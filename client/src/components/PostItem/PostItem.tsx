@@ -1,10 +1,11 @@
 import classes from "./PostItem.module.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import { Post } from "../../models/user-models";
 import OptionBox from "../OptionBox/OptionBox";
+import MoreLikeThis from "../MoreLikeThis/MoreLikeThis";
 
 const PostItem: React.FC<{ obj: Post }> = ({ obj }) => {
   const nav = useNavigate();
@@ -46,30 +47,12 @@ const PostItem: React.FC<{ obj: Post }> = ({ obj }) => {
         className={classes.img}
         src={obj.url}
       />
-
       <h4 onClick={() => nav(`/posts/${obj._id}`)} className={classes.title}>
         {obj.title}
       </h4>
       <p className={classes.p}>{obj.content.substring(0, 97)}...</p>
       <div className={classes.pOptions}>
-        {!postsMgr.isFiltering ? (
-          <span
-            className={classes.span}
-            onClick={() => postsMgr.onMoreLikeThis(obj.label)}
-          >
-            more like this
-          </span>
-        ) : (
-          <span
-            className={classes.span}
-            onClick={() => {
-              postsMgr.setIsFiltering(false);
-              postsMgr.fetchPostApi();
-            }}
-          >
-            x {obj.label}
-          </span>
-        )}
+        <MoreLikeThis label={obj.label} />
         {obj.username === userMgr.currentUser.username && (
           <OptionBox username={obj.username} _id={obj._id} />
         )}
