@@ -23,6 +23,9 @@ export const PostCtx = createContext<PostCtxType>({
   onEditPost: (id: string, oldData: Post) => {},
   postIdToEdit: "",
   setPostIdToEdit: () => {},
+  onMoreLikeThis: (label: string) => {},
+  isFiltering: false,
+  setIsFiltering: () => {},
 });
 
 const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -35,6 +38,7 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [displayPosts, setDisplayPosts] = useState([PostTemplate]);
   const [specPost, setSpecPost] = useState(PostTemplate);
   const [postIdToEdit, setPostIdToEdit] = useState("");
+  const [isFiltering, setIsFiltering] = useState(false);
 
   const fetchPostApi = async () => {
     await axios
@@ -126,6 +130,20 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
       .catch((err) => console.log(err));
   };
 
+  const onMoreLikeThis = async (label: string) => {
+    await axios
+      .get(`/api/v1/posts/morelikethis/${label}/`)
+      .then((serverRes) => {
+        setIsFiltering(true);
+        serverRes.data.reverse();
+        setDisplayPosts(serverRes.data);
+        nav("/posts");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <PostCtx.Provider
       value={{
@@ -141,6 +159,9 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
         onEditPost,
         postIdToEdit,
         setPostIdToEdit,
+        onMoreLikeThis,
+        isFiltering,
+        setIsFiltering,
       }}
     >
       {children}

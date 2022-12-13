@@ -23,6 +23,9 @@ export interface PostCtxType {
   onEditPost: (id: string, oldData: Post) => void;
   postIdToEdit: string;
   setPostIdToEdit: React.Dispatch<React.SetStateAction<string>>;
+  onMoreLikeThis: (label: string) => void;
+  isFiltering: boolean;
+  setIsFiltering: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // TEPLATES

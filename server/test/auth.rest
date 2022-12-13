@@ -37,3 +37,8 @@ Content-Type:application/json
 # ENSURE CLIENTS RESPONDS ADEQUATELY TO THE DATA
 # SINGLE USER FOR TESTING WILL DO
 
+###
+
+# GET LABEL POST
+
+GET http://localhost:3002/api/v1/posts/morelikethis/blue

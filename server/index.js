@@ -21,6 +21,8 @@ const delPostRoute = require("./routes/del_post");
 const avatarRoute = require("./routes/avatar");
 const upVoteRoute = require("./routes/up_vote");
 const editPostRoute = require("./routes/edit_post");
+const moreLikeRoute = require("./routes/more_like");
+
 // SEED DB
 const seedRoute = require("./database/seedRoute");
 
@@ -44,6 +46,7 @@ app.use("/", delPostRoute);
 app.use("/", avatarRoute);
 app.use("/", upVoteRoute);
 app.use("/", editPostRoute);
+app.use("/", moreLikeRoute);
 
 // DB CONNECTION
 

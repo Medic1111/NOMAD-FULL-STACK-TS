@@ -20,7 +20,7 @@ const postSchema = new mongoose.Schema({
   title: { type: String },
   content: { type: String },
   up_by: { type: Array, default: [] },
-  label: { type: String },
+  label: { type: String, default: "none" },
 });
 
 const User = new mongoose.model("User", userSchema);
