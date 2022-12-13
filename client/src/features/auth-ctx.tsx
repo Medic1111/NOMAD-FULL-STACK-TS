@@ -5,6 +5,7 @@ import { AuthCtxType } from "../models/auth-models";
 import { FormDataTemplate } from "../models/auth-models";
 import { CurrentUserTemplate } from "../models/user-models";
 import { userCtx } from "./user-ctx";
+import { UiCtx } from "./ui-ctx";
 
 export const authCtx = createContext<AuthCtxType>({
   showLogin: false,
@@ -31,6 +32,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const nav = useNavigate();
   const userMgr = useContext(userCtx);
+  const uiMgr = useContext(UiCtx);
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState(FormDataTemplate);
   const [isAuth, setIsAuth] = useState(false);
@@ -84,6 +86,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    uiMgr.dispatch({ type: "LOADING" });
+
     e.preventDefault();
     let url;
     showLogin ? (url = "/api/login") : (url = "/api/register");
@@ -95,6 +99,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           username: serverRes.data.username,
           avatar: serverRes.data.avatar,
         });
+        uiMgr.dispatch({ type: "CLOSE" });
+
         setIsAuth(true);
         const myExp = new Date(new Date().getTime() + 1000 * 60 * 60);
         localStorage.setItem(
@@ -109,6 +115,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         resetFormData();
       })
       .catch((err) => {
+        uiMgr.dispatch({ type: "CLOSE" });
         setShowFeedback(true);
         setFeedMsg(err.response.data.message);
       });
