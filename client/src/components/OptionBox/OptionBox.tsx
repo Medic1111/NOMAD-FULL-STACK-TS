@@ -13,7 +13,7 @@ const OptionBox: React.FC<{ username: string; _id: string }> = ({
   const nav = useNavigate();
 
   return (
-    <div className={classes.userOptions}>
+    <div className={`${classes.userOptions} flex_center`}>
       <span
         className={classes.span}
         onClick={() => {

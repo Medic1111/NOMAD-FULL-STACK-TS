@@ -8,12 +8,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 1vh 5vw;
-  background-color: rgba(118, 195, 173, 0.737);
+  background-color: var(--bg_accent);
 }
 .welcome {
   font-size: 1.7em;
   letter-spacing: 0.7px;
-  color: rgb(43, 55, 51);
+  color: var(--color_h_dark);
   font-weight: 500;
 }
 
@@ -25,9 +25,9 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   letter-spacing: 0.5px;
   cursor: pointer;
-  background-color: rgba(0, 128, 92, 0.131);
+  background-color: var(--bg_accent);
   font-size: 1.7em;
-  color: rgb(43, 55, 51);
+  color: var(--color_h_dark);
   border: transparent;
 }
 

@@ -30,10 +30,10 @@ const AvatarForm: React.FC = () => {
   };
 
   return (
-    <form className={classes.form}>
+    <form className={`${classes.form} flex_col_center`}>
       <h3 className={classes.h3}>Edit Profile Picture</h3>
       <input
-        className={classes.input}
+        className={`${classes.input} input_standard`}
         type="text"
         placeholder="New Image URL"
         value={newUrl}
@@ -43,12 +43,12 @@ const AvatarForm: React.FC = () => {
       />
       <input
         onClick={onUpdateAvatar}
-        className={classes.inputBtn}
+        className={`${classes.inputBtn} btn_standard`}
         type="submit"
         value="Update"
       />
       <button
-        className={classes.inputBtn}
+        className={`${classes.inputBtn} btn_standard`}
         onClick={(e) => {
           e.preventDefault();
           uiMgr.dispatch({ type: "CLOSE" });

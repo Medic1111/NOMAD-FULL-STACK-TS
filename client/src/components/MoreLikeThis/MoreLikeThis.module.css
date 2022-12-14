@@ -1,5 +1,5 @@
 .span {
-  color: rgb(118, 195, 173);
+  color: var(--bg_btn);
   font-size: 1.3em;
   cursor: pointer;
 }

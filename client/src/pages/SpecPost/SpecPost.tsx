@@ -37,7 +37,7 @@ const SpecPost: React.FC = () => {
   }, []);
 
   return (
-    <main className={spec_classes.main}>
+    <main className={`${spec_classes.main} flex_col_center`}>
       <div className={spec_classes.userBox}>
         <div
           className={classes.avatarBox}
