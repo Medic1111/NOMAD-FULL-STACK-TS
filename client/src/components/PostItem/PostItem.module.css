@@ -12,10 +12,6 @@
   margin-left: 2.5%;
   position: relative;
 }
-.li:hover {
-  transform: scale(1.05);
-  transition: 0.25s;
-}
 
 .avatarBox {
   display: flex;
@@ -131,6 +127,10 @@
     height: 17.5em;
     width: 90%;
     border-radius: 5px;
+  }
+  .li:hover {
+    transform: scale(1.05);
+    transition: 0.25s;
   }
 }
 @media (min-width: 1024px) {
