@@ -9,19 +9,22 @@ const Nav: React.FC = () => {
   const userMgr = useContext(userCtx);
 
   return (
-    <nav className={classes.nav}>
+    <nav className={`${classes.nav} flex_center`}>
       {authMgr.isAuth ? (
         <>
-          <Link className={classes.link} to="/posts">
+          <Link className={`${classes.link} link_standard`} to="/posts">
             Posts
           </Link>
           <Link
-            className={classes.link}
+            className={`${classes.link} link_standard`}
             to={`/users/${userMgr.currentUser.username}`}
           >
             Profile
           </Link>
-          <li className={classes.link} onClick={() => authMgr.logoutHandler()}>
+          <li
+            className={`${classes.link} link_standard`}
+            onClick={() => authMgr.logoutHandler()}
+          >
             Logout
           </li>
         </>
@@ -29,11 +32,14 @@ const Nav: React.FC = () => {
         <>
           <li
             onClick={() => authMgr.onShowForm(false)}
-            className={classes.link}
+            className={`${classes.link} link_standard`}
           >
             Sign Up
           </li>
-          <li onClick={() => authMgr.onShowForm(true)} className={classes.link}>
+          <li
+            onClick={() => authMgr.onShowForm(true)}
+            className={`${classes.link} link_standard`}
+          >
             Login
           </li>
         </>

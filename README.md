@@ -7,3 +7,18 @@
 - [ ] Ensure USER component is accessible for other than current users, from URL
 
 - [ ] LOADING SPINNER
+
+### CSS
+
+- HOME PAGE
+- HERO
+- NAV
+- LOGIN
+- REGISTER
+- POSTS PAGE
+- POST ITEM
+- CREATE NEW POST FORM
+- EDIT POST FORM
+- EDIT AVATAR FORM
+- USER/PROFILE PAGE
+- SPEC POST

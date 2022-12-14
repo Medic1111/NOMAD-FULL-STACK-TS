@@ -19,17 +19,17 @@ const PostItem: React.FC<{ obj: Post }> = ({ obj }) => {
           onClick={() => {
             nav(`/users/${obj.username}`);
           }}
-          className={classes.avatarBox}
+          className={`${classes.avatarBox}`}
         >
           <img className={classes.avatar} src={obj.avatar} />
           <p className={classes.username}>{obj.username}</p>
         </div>
-        <div className={classes.voteBox}>
+        <div className={`${classes.voteBox} flex_center`}>
           <span
             className={
               obj.up_by.includes(userMgr.currentUser.username)
-                ? classes.upvoted
-                : classes.upvote
+                ? `${classes.upvoted} material-symbols-outlined`
+                : `${classes.upvote} material-symbols-outlined`
             }
             onClick={() => {
               return obj.up_by.includes(userMgr.currentUser.username)
@@ -37,7 +37,7 @@ const PostItem: React.FC<{ obj: Post }> = ({ obj }) => {
                 : postsMgr.onUpVote(obj._id);
             }}
           >
-            ⬆
+            arrow_upward
           </span>
           <span className={classes.upvoteCount}>{obj.voteCount}</span>
         </div>

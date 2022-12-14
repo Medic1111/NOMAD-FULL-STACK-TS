@@ -1,5 +1,4 @@
 import classes from "../NewPostForm/NewPostForm.module.css";
-import spec_classes from "./EditPostForm.module.css";
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Post, PostTemplate } from "../../models/user-models";
@@ -45,7 +44,7 @@ const EditPostForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleEditPost} className={spec_classes.form}>
+    <form onSubmit={handleEditPost} className={classes.form}>
       <input
         name="title"
         value={oldData.title}

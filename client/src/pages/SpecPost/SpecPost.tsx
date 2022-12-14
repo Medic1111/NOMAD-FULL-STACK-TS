@@ -38,7 +38,7 @@ const SpecPost: React.FC = () => {
 
   return (
     <main className={spec_classes.main}>
-      <div className={classes.userBox}>
+      <div className={spec_classes.userBox}>
         <div
           className={classes.avatarBox}
           onClick={() => {
@@ -52,8 +52,8 @@ const SpecPost: React.FC = () => {
           <span
             className={
               objToRender.up_by.includes(userMgr.currentUser.username)
-                ? classes.upvoted
-                : classes.upvote
+                ? `${classes.upvoted} material-symbols-outlined`
+                : `${classes.upvote} material-symbols-outlined`
             }
             onClick={() => {
               return objToRender.up_by.includes(userMgr.currentUser.username)
@@ -61,7 +61,7 @@ const SpecPost: React.FC = () => {
                 : postMgr.onUpVote(objToRender._id, setObjToRender);
             }}
           >
-            ⬆
+            arrow_upward
           </span>
           <span className={classes.upvoteCount}>{objToRender.voteCount}</span>
         </div>
@@ -69,7 +69,7 @@ const SpecPost: React.FC = () => {
       <img className={spec_classes.img} src={objToRender.url} />
       <h4 className={classes.title}>{objToRender.title}</h4>
       <p className={spec_classes.pContent}>{objToRender.content}</p>
-      <div className={classes.pOptions}>
+      <div className={spec_classes.pOptions}>
         <MoreLikeThis label={objToRender.label} />
         <div className={classes.userOptions}>
           {objToRender.username === userMgr.currentUser.username && (

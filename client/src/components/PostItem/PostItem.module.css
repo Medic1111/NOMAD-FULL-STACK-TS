@@ -1,19 +1,19 @@
-/* POSTS */
-
 .li {
   background-color: rgba(5, 47, 33, 0.024);
-  min-width: 31.25vw;
-  height: 50vh;
+  min-width: 95%;
+  min-height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 0.5em;
+  padding: 0.5em 0;
   gap: 1em;
   border-radius: 10px;
+  margin-left: 2.5%;
+  position: relative;
 }
 .li:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: 0.25s;
 }
 
@@ -30,13 +30,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  margin-bottom: 2em;
-  width: 70%;
+  width: 100%;
+  padding: 0 1em;
 }
 .username {
   font-size: 1.3em;
   letter-spacing: 0.3px;
-  color: rgb(43, 55, 51);
+  color: var(--color_p_dark);
 }
 .avatar {
   width: 5em;
@@ -45,12 +45,9 @@
   object-fit: cover;
 }
 .img {
-  width: 70%;
-  height: 20rem;
-  min-height: 20rem;
-  max-height: 25rem;
+  width: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  height: 25em;
   cursor: pointer;
 }
 .title {
@@ -61,10 +58,11 @@
   color: rgb(43, 55, 51);
   max-width: 70%;
   cursor: pointer;
+  margin: 1vh 0;
 }
 
 .p {
-  max-width: 70%;
+  max-width: 80%;
   text-align: center;
   color: rgba(43, 55, 51, 0.915);
   font-size: 1.7em;
@@ -73,20 +71,21 @@
 }
 
 .voteBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upvoteCount {
   font-size: 1.4em;
+  color: var(--color_p_dark);
 }
 .upvote,
 .upvoted {
   font-size: 2em;
   cursor: pointer;
-  color: rgb(118, 195, 173);
+  color: var(--color_link);
 }
 
 .upvoted {
@@ -94,33 +93,55 @@
 }
 .pOptions {
   height: 5vh;
-  width: 70%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  justify-self: flex-end;
+  position: absolute;
+  bottom: 0;
 }
 .span {
-  color: rgb(118, 195, 173);
+  color: var(--color_link);
   font-size: 1.3em;
   cursor: pointer;
 }
-.userOptions {
+/* .userOptions {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.75em;
-}
+} */
 
-@media (max-width: 798px) {
+@media (min-width: 640px) {
   .li {
-    min-width: 95%;
-    padding: 2.5%;
+    min-width: 45%;
+    min-height: 80%;
   }
   .img {
-    width: 50%;
+    height: 15em;
   }
-  .li:hover {
-    transform: scale(1);
+}
+
+@media (min-width: 768px) {
+  .li {
+    min-width: 45%;
+    min-height: 80%;
+  }
+  .img {
+    height: 17.5em;
+    width: 90%;
+    border-radius: 5px;
+  }
+}
+@media (min-width: 1024px) {
+  .li {
+    min-width: 30%;
+    min-height: 82.5%;
+    margin: 0;
+    max-width: 30%;
+  }
+  .img {
+    width: 90%;
+    max-width: 90%;
   }
 }

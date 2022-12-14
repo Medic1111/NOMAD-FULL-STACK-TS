@@ -72,7 +72,7 @@ const NewPostForm: React.FC = () => {
           uiMgr.dispatch({ type: "CLOSE" });
         }}
       >
-        Cancel
+        cancel
       </button>
     </form>
   );

@@ -1,4 +1,4 @@
-import classes from "./AuthForms.module.css";
+import classes from "./AuthForms2.module.css";
 import { useContext } from "react";
 import { Slide } from "react-awesome-reveal";
 import { authCtx } from "../../features/auth-ctx";
@@ -7,19 +7,22 @@ const AuthForms = () => {
   const authMgr = useContext(authCtx);
 
   return (
-    <Slide className={classes.formBox}>
-      <form onSubmit={(e) => authMgr.onSubmit(e)} className={classes.form}>
+    <Slide className={`${classes.formBox} flex_center`}>
+      <form
+        onSubmit={(e) => authMgr.onSubmit(e)}
+        className={`${classes.form} flex_col_center`}
+      >
         <h3 className={classes.h3}>
           {authMgr.showLogin ? "LOGIN" : "SIGN UP"}
         </h3>
         {authMgr.showLogin || (
           <>
-            <label className={classes.label} htmlFor="username">
+            <label className={`label_standard`} htmlFor="username">
               Email
             </label>
 
             <input
-              className={classes.input}
+              className={`${classes.input} input_standard`}
               type="email"
               id="email"
               name="email"
@@ -30,11 +33,11 @@ const AuthForms = () => {
             />
           </>
         )}
-        <label className={classes.label} htmlFor="username">
+        <label className={`label_standard`} htmlFor="username">
           Username
         </label>
         <input
-          className={classes.input}
+          className={`${classes.input} input_standard`}
           type="text"
           id="username"
           name="username"
@@ -43,11 +46,11 @@ const AuthForms = () => {
           maxLength={14}
           required
         />
-        <label className={classes.label} htmlFor="password">
+        <label className={`label_standard`} htmlFor="password">
           Password
         </label>
         <input
-          className={classes.input}
+          className={`${classes.input} input_standard`}
           type="password"
           id="password"
           name="password"
@@ -57,11 +60,11 @@ const AuthForms = () => {
         />
         {authMgr.showLogin || (
           <>
-            <label className={classes.label} htmlFor="avatar">
+            <label className={`label_standard`} htmlFor="avatar">
               Profile Picture
             </label>
             <input
-              className={classes.input}
+              className={`${classes.input} input_standard`}
               type="text"
               id="text"
               name="avatar"
@@ -70,10 +73,12 @@ const AuthForms = () => {
             />
           </>
         )}
-        {authMgr.showFeedback && <p className={classes.p}>{authMgr.feedMsg}</p>}
+        {authMgr.showFeedback && (
+          <p className={`p_feedback`}>{authMgr.feedMsg}</p>
+        )}
 
         <input
-          className={classes.btn}
+          className={`${classes.btn} btn_standard`}
           type="submit"
           value={authMgr.showLogin ? "Login" : "Sign Up"}
         />
