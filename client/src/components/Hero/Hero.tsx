@@ -1,4 +1,4 @@
-import classes from "./Hero2.module.css";
+import classes from "./Hero.module.css";
 import { useContext } from "react";
 import { Zoom, Slide } from "react-awesome-reveal";
 import { authCtx } from "../../features/auth-ctx";

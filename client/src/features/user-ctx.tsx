@@ -16,9 +16,9 @@ export const userCtx = createContext<UserCtxType>({
 const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const uiMgr = useContext(UiCtx);
   const [currentUser, setCurrentUser] = useState(CurrentUserTemplate);
   const [userProfile, setUserProfile] = useState(UserProfileTemplate);
-  const uiMgr = useContext(UiCtx);
 
   const fetchUser = async (username: any) => {
     uiMgr.dispatch({ type: "LOADING" });

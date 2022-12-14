@@ -1,11 +1,11 @@
 .span {
-  color: rgb(118, 195, 173);
+  color: var(--bg_btn);
   font-size: 1.3em;
   cursor: pointer;
 }
 .userOptions {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   gap: 0.75em;
 }

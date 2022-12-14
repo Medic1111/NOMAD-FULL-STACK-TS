@@ -4,6 +4,6 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #f7f7f7;
+  background-color: var(--bg);
   z-index: 99999;
 }

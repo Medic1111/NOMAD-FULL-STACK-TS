@@ -18,10 +18,10 @@ const User = () => {
   }, [userId.id]);
 
   return (
-    <main className={classes.main}>
+    <main className={`${classes.main} flex_col_center`}>
       {uiMgr.state.editAvatar && <AvatarForm />}
       <h1 className={classes.h1}>{userMgr.userProfile.username}</h1>
-      <div className={classes.avatarBox}>
+      <div className={`${classes.avatarBox} flex_center`}>
         <img
           className={
             userMgr.currentUser.username === userId.id
@@ -38,7 +38,7 @@ const User = () => {
       <p className={classes.totalPosts}>
         total posts: {userMgr.userProfile.totalPosts}
       </p>
-      <ul className={classes.ul}>
+      <ul className={`${classes.ul} flex_col_center`}>
         {userMgr.userProfile.posts.map((obj, index) => {
           return (
             <li key={`PROFILE_POST_${index}`} className={classes.li}>

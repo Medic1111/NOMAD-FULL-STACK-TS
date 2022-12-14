@@ -32,12 +32,15 @@ const NewPostForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleCreatePost} className={classes.form}>
+    <form
+      onSubmit={handleCreatePost}
+      className={`${classes.form} flex_col_center`}
+    >
       <input
         name="title"
         value={postData.title}
         onChange={onInputChange}
-        className={classes.input}
+        className={`${classes.input} input_standard`}
         type="text"
         placeholder="Title"
         maxLength={20}
@@ -47,7 +50,7 @@ const NewPostForm: React.FC = () => {
         name="content"
         value={postData.content}
         onChange={onInputChange}
-        className={classes.textArea}
+        className={`${classes.textArea} input_standard`}
         placeholder="Content"
         maxLength={400}
         rows={27}
@@ -58,15 +61,19 @@ const NewPostForm: React.FC = () => {
         name="url"
         value={postData.url}
         onChange={onInputChange}
-        className={classes.input}
+        className={`${classes.input} input_standard`}
         type="text"
         placeholder="Img Url"
         required
       />
       <Label label={label} setLabel={setLabel} />
-      <input value="post" className={classes.submitBtn} type="submit" />
+      <input
+        value="post"
+        className={`${classes.submitBtn} btn_standard`}
+        type="submit"
+      />
       <button
-        className={classes.submitBtn}
+        className={`${classes.submitBtn} btn_standard`}
         onClick={(e) => {
           e.preventDefault();
           uiMgr.dispatch({ type: "CLOSE" });
