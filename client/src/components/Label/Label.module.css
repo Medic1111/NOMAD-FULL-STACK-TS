@@ -9,9 +9,17 @@
   color: white;
   height: 2.5em;
   background-color: rgba(118, 195, 173, 0.737);
-
   cursor: pointer;
+  margin: 2.5vh 0;
 }
+
+.label:first-child {
+  border-radius: 5px 0 0 5px;
+}
+.label:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
 .labelSelection {
   background-color: rgb(74, 95, 88);
 }
