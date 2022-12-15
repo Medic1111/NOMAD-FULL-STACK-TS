@@ -26,6 +26,8 @@ export interface PostCtxType {
   onMoreLikeThis: (label: string) => void;
   isFiltering: boolean;
   setIsFiltering: React.Dispatch<React.SetStateAction<boolean>>;
+  labelToDisplay: string;
+  setLabelToDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
 // TEPLATES

@@ -43,3 +43,9 @@
   white-space: "nowrap";
   padding: 0 1vw;
 }
+.labelBtnBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
