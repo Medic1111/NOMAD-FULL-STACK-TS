@@ -12,8 +12,6 @@ const PostItem: React.FC<{ obj: Post }> = ({ obj }) => {
   const userMgr = useContext(userCtx);
   const postsMgr = useContext(PostCtx);
 
-  console.log(obj.username === userMgr.currentUser.username);
-
   return (
     <li className={classes.li}>
       <div className={classes.userBox}>

@@ -1,6 +1,18 @@
 .main {
   width: 100vw;
   height: auto;
+  position: relative;
+}
+.slide {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  /* left: -45vw; */
+  z-index: 9999;
+}
+.swipe {
+  font-size: 12em;
+  color: var(--bg_btn);
 }
 .aside {
   width: 100%;

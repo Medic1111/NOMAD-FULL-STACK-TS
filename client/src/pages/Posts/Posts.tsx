@@ -1,11 +1,12 @@
 import classes from "./Posts.module.css";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import PostItem from "../../components/PostItem/PostItem";
 import Modal from "../../components/Modal/Modal";
 import LabelBadge from "../../components/LabelBadge/LabelBadge";
+import { Slide, Bounce } from "react-awesome-reveal";
 
 const Posts = () => {
   const postsMgr = useContext(PostCtx);
@@ -29,7 +30,7 @@ const Posts = () => {
   }, [uiMgr.state.createPost]);
 
   return (
-    <main className={classes.main}>
+    <main className={classes.main} onClick={() => uiMgr.setHasInteracted(true)}>
       {uiMgr.state.showModal && <Modal />}
       <aside className={classes.aside}>
         <p className={classes.welcome}>
@@ -47,7 +48,14 @@ const Posts = () => {
           </button>
         </div>
       </aside>
-      <ul className={classes.ul}>
+      {uiMgr.hasInteracted || (
+        <Slide delay={2500} direction="right" className={classes.slide}>
+          <Bounce className={`${classes.swipe} material-symbols-outlined`}>
+            swipe
+          </Bounce>
+        </Slide>
+      )}
+      <ul className={classes.ul} onScroll={() => uiMgr.setHasInteracted(true)}>
         {postsMgr.displayPosts.map((obj, index) => {
           return <PostItem key={`POST_${index}`} obj={obj} />;
         })}

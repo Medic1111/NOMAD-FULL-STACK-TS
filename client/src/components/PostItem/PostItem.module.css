@@ -3,8 +3,9 @@
   min-width: 95%;
   min-height: 95%;
   /* MOBILE TEST */
-  min-height: 75%;
+  min-height: 80%;
   /* MOBILE TEST END */
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
