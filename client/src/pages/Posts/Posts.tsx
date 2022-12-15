@@ -1,5 +1,5 @@
 import classes from "./Posts.module.css";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import { userCtx } from "../../features/user-ctx";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
