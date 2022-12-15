@@ -2,6 +2,9 @@
   background-color: rgba(5, 47, 33, 0.024);
   min-width: 95%;
   min-height: 95%;
+  /* MOBILE TEST */
+  min-height: 75%;
+  /* MOBILE TEST END */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
