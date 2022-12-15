@@ -81,13 +81,16 @@
 }
 .upvote,
 .upvoted {
-  font-size: 2em;
+  font-size: 2.5em;
   cursor: pointer;
   color: var(--color_link);
 }
 
 .upvoted {
   color: rgb(184, 189, 188);
+}
+.upvote:hover {
+  transform: scale(1.2);
 }
 .pOptions {
   height: 5vh;

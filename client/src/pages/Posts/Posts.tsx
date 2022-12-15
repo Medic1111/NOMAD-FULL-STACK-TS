@@ -5,6 +5,7 @@ import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import PostItem from "../../components/PostItem/PostItem";
 import Modal from "../../components/Modal/Modal";
+import LabelBadge from "../../components/LabelBadge/LabelBadge";
 
 const Posts = () => {
   const postsMgr = useContext(PostCtx);
@@ -34,14 +35,17 @@ const Posts = () => {
         <p className={classes.welcome}>
           Welcome {userMgr.currentUser.username}
         </p>
-        <button
-          className={classes.btnCreate}
-          onClick={() => {
-            uiMgr.dispatch({ type: "CREATEPOST" });
-          }}
-        >
-          +
-        </button>
+        <div className={classes.labelBtnBox}>
+          {postMgr.isFiltering && <LabelBadge />}
+          <button
+            className={classes.btnCreate}
+            onClick={() => {
+              uiMgr.dispatch({ type: "CREATEPOST" });
+            }}
+          >
+            +
+          </button>
+        </div>
       </aside>
       <ul className={classes.ul}>
         {postsMgr.displayPosts.map((obj, index) => {

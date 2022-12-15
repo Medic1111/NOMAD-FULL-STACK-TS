@@ -26,6 +26,8 @@ export const PostCtx = createContext<PostCtxType>({
   onMoreLikeThis: (label: string) => {},
   isFiltering: false,
   setIsFiltering: () => {},
+  labelToDisplay: "",
+  setLabelToDisplay: () => {},
 });
 
 const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -39,6 +41,7 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [specPost, setSpecPost] = useState(PostTemplate);
   const [postIdToEdit, setPostIdToEdit] = useState("");
   const [isFiltering, setIsFiltering] = useState(false);
+  const [labelToDisplay, setLabelToDisplay] = useState("");
 
   const fetchPostApi = async () => {
     uiMgr.dispatch({ type: "LOADING" });
@@ -161,6 +164,7 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
       .get(`/api/v1/posts/morelikethis/${label}/`)
       .then((serverRes) => {
         setIsFiltering(true);
+        setLabelToDisplay(label);
         serverRes.data.reverse();
         setDisplayPosts(serverRes.data);
         nav("/posts");
@@ -190,6 +194,8 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
         onMoreLikeThis,
         isFiltering,
         setIsFiltering,
+        labelToDisplay,
+        setLabelToDisplay,
       }}
     >
       {children}

@@ -7,22 +7,12 @@ const MoreLikeThis: React.FC<{ label: string }> = ({ label }) => {
 
   return (
     <>
-      {!postsMgr.isFiltering ? (
+      {!postsMgr.isFiltering && (
         <span
           className={classes.span}
           onClick={() => postsMgr.onMoreLikeThis(label)}
         >
           more like this
-        </span>
-      ) : (
-        <span
-          className={classes.span}
-          onClick={() => {
-            postsMgr.setIsFiltering(false);
-            postsMgr.fetchPostApi();
-          }}
-        >
-          x {label}
         </span>
       )}
     </>

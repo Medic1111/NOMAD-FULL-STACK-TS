@@ -8,6 +8,7 @@ import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
 import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
 import { UiCtx } from "../../features/ui-ctx";
+import LabelBadge from "../../components/LabelBadge/LabelBadge";
 
 const SpecPost: React.FC = () => {
   const postMgr = useContext(PostCtx);
@@ -49,6 +50,8 @@ const SpecPost: React.FC = () => {
           <p className={classes.username}>{objToRender.username}</p>
         </div>
         <div className={classes.voteBox}>
+          {postMgr.isFiltering && <LabelBadge />}
+
           <span
             className={
               objToRender.up_by.includes(userMgr.currentUser.username)

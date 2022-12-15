@@ -34,6 +34,9 @@ const User = () => {
           }
           src={userMgr.userProfile.avatar}
         />
+        {userMgr.currentUser.username === userId.id && (
+          <span className={`${classes.x} material-symbols-outlined`}>edit</span>
+        )}
       </div>
       <p className={classes.totalPosts}>
         total posts: {userMgr.userProfile.totalPosts}
