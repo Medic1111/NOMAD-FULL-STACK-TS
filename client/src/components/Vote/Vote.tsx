@@ -10,8 +10,6 @@ const Vote: React.FC<{
 }> = ({ obj, setObjToRender }) => {
   const userMgr = useContext(userCtx);
   const postMgr = useContext(PostCtx);
-  console.log(obj);
-  console.log(obj.up_by.includes(userMgr.currentUser.username));
 
   return (
     <div className={`${classes.voteBox} flex_center`}>

@@ -38,7 +38,7 @@ const Posts = () => {
         {postsMgr.displayPosts.map((obj, index) => {
           return (
             <React.Suspense fallback={"loading..."}>
-              <PostItemLazy key={`POST_${index}`} obj={obj} />
+              <PostItemLazy key={`POST_MAIN_${index}`} obj={obj} />
             </React.Suspense>
           );
         })}

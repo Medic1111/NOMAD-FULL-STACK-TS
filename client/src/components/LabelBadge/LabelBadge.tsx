@@ -34,7 +34,7 @@ const LabelBadge: React.FC = () => {
       }
     };
     setBackground();
-  }, []);
+  }, [postMgr.labelToDisplay]);
 
   return (
     <span

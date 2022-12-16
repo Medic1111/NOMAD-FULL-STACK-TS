@@ -3,15 +3,17 @@ import { useState, useContext } from "react";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import Label from "../Label/Label";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const NewPostForm: React.FC = () => {
   const postMgr = useContext(PostCtx);
   const uiMgr = useContext(UiCtx);
 
   const [label, setLabel] = useState("none");
+  const [content, setContent] = useState("");
   const [postData, setPostData] = useState({
     title: "",
-    content: "",
     url: "",
   });
 
@@ -28,7 +30,7 @@ const NewPostForm: React.FC = () => {
 
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postMgr.onCreateNewPost({ ...postData, label });
+    postMgr.onCreateNewPost({ ...postData, label, content });
   };
 
   return (
@@ -46,15 +48,11 @@ const NewPostForm: React.FC = () => {
         maxLength={20}
         required
       />
-      <textarea
-        name="content"
-        value={postData.content}
-        onChange={onInputChange}
+      <ReactQuill
         className={`${classes.textArea} input_standard`}
-        placeholder="Content"
-        maxLength={1000}
-        rows={27}
-        required
+        theme="snow"
+        value={content}
+        onChange={setContent}
       />
 
       <input

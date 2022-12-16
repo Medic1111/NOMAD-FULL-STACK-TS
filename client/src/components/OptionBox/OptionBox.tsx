@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
@@ -11,7 +11,6 @@ const OptionBox: React.FC<{ username: string; _id: string }> = ({
   const uiMgr = useContext(UiCtx);
   const postMgr = useContext(PostCtx);
   const nav = useNavigate();
-
   return (
     <div className={`${classes.userOptions} flex_center`}>
       <span
