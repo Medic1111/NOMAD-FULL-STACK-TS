@@ -1,12 +1,17 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
 import { Post } from "../../models/user-models";
 import classes from "./Vote.module.css";
 
-const Vote: React.FC<{ obj: Post }> = ({ obj }) => {
+const Vote: React.FC<{
+  obj: Post;
+  setObjToRender?: React.Dispatch<React.SetStateAction<Post>>;
+}> = ({ obj, setObjToRender }) => {
   const userMgr = useContext(userCtx);
   const postMgr = useContext(PostCtx);
+  console.log(obj);
+  console.log(obj.up_by.includes(userMgr.currentUser.username));
 
   return (
     <div className={`${classes.voteBox} flex_center`}>
@@ -19,7 +24,7 @@ const Vote: React.FC<{ obj: Post }> = ({ obj }) => {
         onClick={() => {
           return obj.up_by.includes(userMgr.currentUser.username)
             ? null
-            : postMgr.onUpVote(obj._id);
+            : postMgr.onUpVote(obj._id, setObjToRender);
         }}
       >
         arrow_upward
