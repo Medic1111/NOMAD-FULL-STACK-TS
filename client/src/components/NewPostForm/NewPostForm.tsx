@@ -52,7 +52,7 @@ const NewPostForm: React.FC = () => {
         onChange={onInputChange}
         className={`${classes.textArea} input_standard`}
         placeholder="Content"
-        maxLength={400}
+        maxLength={1000}
         rows={27}
         required
       />

@@ -8,7 +8,7 @@ import { PostCtx } from "../../features/posts-ctx";
 import { userCtx } from "../../features/user-ctx";
 import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
 import { UiCtx } from "../../features/ui-ctx";
-import LabelBadge from "../../components/LabelBadge/LabelBadge";
+import Vote from "../../components/Vote/Vote";
 
 const SpecPost: React.FC = () => {
   const postMgr = useContext(PostCtx);
@@ -49,25 +49,7 @@ const SpecPost: React.FC = () => {
           <img className={classes.avatar} src={objToRender.avatar} />
           <p className={classes.username}>{objToRender.username}</p>
         </div>
-        <div className={classes.voteBox}>
-          {postMgr.isFiltering && <LabelBadge />}
-
-          <span
-            className={
-              objToRender.up_by.includes(userMgr.currentUser.username)
-                ? `${classes.upvoted} material-symbols-outlined`
-                : `${classes.upvote} material-symbols-outlined`
-            }
-            onClick={() => {
-              return objToRender.up_by.includes(userMgr.currentUser.username)
-                ? null
-                : postMgr.onUpVote(objToRender._id, setObjToRender);
-            }}
-          >
-            arrow_upward
-          </span>
-          <span className={classes.upvoteCount}>{objToRender.voteCount}</span>
-        </div>
+        <Vote obj={objToRender} />
       </div>
       <img className={spec_classes.img} src={objToRender.url} />
       <h4 className={classes.title}>{objToRender.title}</h4>

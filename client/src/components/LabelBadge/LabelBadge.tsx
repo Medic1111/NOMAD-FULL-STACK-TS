@@ -10,30 +10,31 @@ const LabelBadge: React.FC = () => {
   const [content, setContent] = useState("toggle_on");
   const [bgColor, setBgColor] = useState<string>();
 
-  const setBackground = () => {
-    switch (postMgr.labelToDisplay) {
-      case "none": {
-        return setBgColor("#dfd3c3");
+  useEffect(() => {
+    const setBackground = () => {
+      switch (postMgr.labelToDisplay) {
+        case "none": {
+          return setBgColor("#dfd3c3");
+        }
+        case "green": {
+          return setBgColor("#cbf078");
+        }
+        case "blue": {
+          return setBgColor("#66bfbf");
+        }
+        case "orange": {
+          return setBgColor("#ff9a3c");
+        }
+        case "brown": {
+          return setBgColor("#83580b");
+        }
+        case "gray": {
+          return setBgColor("#596e79");
+        }
       }
-      case "green": {
-        return setBgColor("#cbf078");
-      }
-      case "blue": {
-        return setBgColor("#66bfbf");
-      }
-      case "orange": {
-        return setBgColor("#ff9a3c");
-      }
-      case "brown": {
-        return setBgColor("#83580b");
-      }
-      case "gray": {
-        return setBgColor("#596e79");
-      }
-    }
-  };
-
-  useEffect(() => setBackground(), []);
+    };
+    setBackground();
+  }, []);
 
   return (
     <span

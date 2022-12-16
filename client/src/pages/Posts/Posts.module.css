@@ -3,45 +3,6 @@
   height: auto;
   position: relative;
 }
-.slide {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  /* left: -45vw; */
-  z-index: 9999;
-}
-.swipe {
-  font-size: 12em;
-  color: var(--bg_btn);
-}
-.aside {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1vh 5vw;
-  background-color: var(--bg_accent);
-}
-.welcome {
-  font-size: 1.7em;
-  letter-spacing: 0.7px;
-  color: var(--color_h_dark);
-  font-weight: 500;
-}
-
-.btnCreate {
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 35px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  background-color: var(--bg_accent);
-  font-size: 1.7em;
-  color: var(--color_h_dark);
-  border: transparent;
-}
 
 .ul {
   list-style: none;
@@ -54,10 +15,4 @@
   gap: 3em;
   white-space: "nowrap";
   padding: 0 1vw;
-}
-.labelBtnBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
 }
