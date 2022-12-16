@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import { userCtx } from "../../features/user-ctx";

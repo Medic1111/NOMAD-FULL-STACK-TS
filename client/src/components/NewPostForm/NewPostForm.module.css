@@ -25,7 +25,12 @@
   height: unset;
   max-height: 30vh;
 }
-
+/* TEST EDITOR */
+.textArea {
+  margin: 5vh 0;
+  margin-bottom: 10vh;
+}
+/* TEST */
 .submitBtn {
   font-weight: 400;
 }

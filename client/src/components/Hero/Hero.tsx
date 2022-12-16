@@ -5,7 +5,6 @@ import { authCtx } from "../../features/auth-ctx";
 
 const Hero: React.FC = () => {
   const authMgr = useContext(authCtx);
-
   return (
     <>
       <div className={`${classes.parallax} flex_center`}>

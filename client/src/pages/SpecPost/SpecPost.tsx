@@ -9,6 +9,7 @@ import { userCtx } from "../../features/user-ctx";
 import MoreLikeThis from "../../components/MoreLikeThis/MoreLikeThis";
 import { UiCtx } from "../../features/ui-ctx";
 import Vote from "../../components/Vote/Vote";
+import parse from "html-react-parser";
 
 const SpecPost: React.FC = () => {
   const postMgr = useContext(PostCtx);
@@ -53,7 +54,7 @@ const SpecPost: React.FC = () => {
       </div>
       <img className={spec_classes.img} src={objToRender.url} />
       <h4 className={classes.title}>{objToRender.title}</h4>
-      <p className={spec_classes.pContent}>{objToRender.content}</p>
+      <div className={spec_classes.pContent}>{parse(objToRender.content)}</div>
       <div className={spec_classes.pOptions}>
         <MoreLikeThis label={objToRender.label} />
         <div className={classes.userOptions}>

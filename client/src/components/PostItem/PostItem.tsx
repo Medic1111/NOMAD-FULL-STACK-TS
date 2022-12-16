@@ -1,12 +1,13 @@
 import classes from "./PostItem.module.css";
 import profile_classes from "../../pages/User/User.module.css";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { userCtx } from "../../features/user-ctx";
 import { Post } from "../../models/user-models";
 import OptionBox from "../OptionBox/OptionBox";
 import MoreLikeThis from "../MoreLikeThis/MoreLikeThis";
 import Vote from "../Vote/Vote";
+import parse from "html-react-parser";
 
 const PostItem: React.FC<{ obj: Post; profile?: boolean }> = ({
   obj,
@@ -39,7 +40,7 @@ const PostItem: React.FC<{ obj: Post; profile?: boolean }> = ({
       <h4 onClick={() => nav(`/posts/${obj._id}`)} className={classes.title}>
         {obj.title}
       </h4>
-      <p className={classes.p}>{obj.content.substring(0, 97)}...</p>
+      <div className={classes.p}>{parse(obj.content.substring(0, 47))}...</div>
       <div className={profile ? profile_classes.pOptions : classes.pOptions}>
         <MoreLikeThis label={obj.label} />
         {obj.username === userMgr.currentUser.username && (

@@ -32,7 +32,7 @@ Same features plus an additional one (label filtering system), with TypeScript o
 
 - Styling is not the focus of this project althought wider screens are perfomant, and mobile screens are functional
 
-- One discussion we held heavily in the original app was how we were going to handle image uploads. We were to choose between implementing Multer to handle it, or a Markdown System that would take an Image URL and store it. I created the multer demo with full implementation but unfortunately most of the free hosting services (Heroku at the time) will destroy static files within 30 mins causing a bad impression during demo with broken Images. Therefore, using a image URL was the visually best option for demoing the concept, which was indeed implemented with a React package that generates a simple Markdown. In this version, the markdown is not present, and the user adds the image url via input.
+- One discussion we held heavily in the original app was how we were going to handle image uploads. We were to choose between implementing Multer to handle it, or a Markdown System that would take an Image URL and store it. I created the multer demo with full implementation but unfortunately most of the free hosting services (Heroku at the time) will destroy static files within 30 mins causing a bad impression during demo with broken Images. Therefore, using a image URL was the visually best option for demoing the concept, which was indeed implemented with a React package that generates a simple Markdown. In this version, a text editor is present but is not handling images. Images URL are passed to inputs instead. PS: Exploring alternatives.
 
 ## Tech Stack
 

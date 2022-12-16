@@ -5,17 +5,21 @@ import { Post, PostTemplate } from "../../models/user-models";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import Label from "../Label/Label";
+import ReactQuill from "react-quill";
 
 const EditPostForm: React.FC = () => {
   const postMgr = useContext(PostCtx);
   const uiMgr = useContext(UiCtx);
+
   const [oldData, setOldData] = useState<Post>(PostTemplate);
   const [label, setLabel] = useState("none");
+  const [content, setContent] = useState("");
 
   const fetchPost = async () => {
     await axios
       .get(`/api/v1/posts/${postMgr.postIdToEdit}`)
       .then((serverRes) => {
+        setContent(serverRes.data.content);
         setOldData(serverRes.data);
       })
       .catch((err) => {
@@ -40,7 +44,7 @@ const EditPostForm: React.FC = () => {
 
   const handleEditPost = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    postMgr.onEditPost(postMgr.postIdToEdit, { ...oldData, label });
+    postMgr.onEditPost(postMgr.postIdToEdit, { ...oldData, label, content });
   };
 
   return (
@@ -58,15 +62,11 @@ const EditPostForm: React.FC = () => {
         maxLength={20}
         required
       />
-      <textarea
-        name="content"
-        value={oldData.content}
-        onChange={onInputChange}
+      <ReactQuill
         className={`${classes.textArea} input_standard`}
-        placeholder="Content"
-        maxLength={1000}
-        rows={27}
-        required
+        theme="snow"
+        value={content}
+        onChange={setContent}
       />
 
       <input

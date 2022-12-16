@@ -89,7 +89,6 @@ const PostsProvider: React.FC<{ children: React.ReactNode }> = ({
     await axios
       .post("/api/v1/posts/new", reqBody)
       .then((serverRes) => {
-        console.log(serverRes.data);
         uiMgr.dispatch({ type: "CLOSE" });
       })
       .catch((err) => {
