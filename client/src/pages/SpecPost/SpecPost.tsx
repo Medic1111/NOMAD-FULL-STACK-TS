@@ -49,7 +49,7 @@ const SpecPost: React.FC = () => {
           <img className={classes.avatar} src={objToRender.avatar} />
           <p className={classes.username}>{objToRender.username}</p>
         </div>
-        <Vote obj={objToRender} />
+        <Vote obj={objToRender} setObjToRender={setObjToRender} />
       </div>
       <img className={spec_classes.img} src={objToRender.url} />
       <h4 className={classes.title}>{objToRender.title}</h4>
