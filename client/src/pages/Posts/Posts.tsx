@@ -1,16 +1,16 @@
 import classes from "./Posts.module.css";
-import { useEffect, useContext } from "react";
-import { userCtx } from "../../features/user-ctx";
+import React, { useEffect, useContext } from "react";
 import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
-import PostItem from "../../components/PostItem/PostItem";
 import Modal from "../../components/Modal/Modal";
-import LabelBadge from "../../components/LabelBadge/LabelBadge";
-import { Slide, Bounce } from "react-awesome-reveal";
+import NavBanner from "../../components/NavBanner/NavBanner";
+import SwipeAnim from "../../components/SwipeAnim/SwipeAnim";
+const PostItemLazy = React.lazy(
+  () => import("../../components/PostItem/PostItem")
+);
 
 const Posts = () => {
   const postsMgr = useContext(PostCtx);
-  const userMgr = useContext(userCtx);
   const postMgr = useContext(PostCtx);
   const uiMgr = useContext(UiCtx);
 
@@ -32,32 +32,15 @@ const Posts = () => {
   return (
     <main className={classes.main} onClick={() => uiMgr.setHasInteracted(true)}>
       {uiMgr.state.showModal && <Modal />}
-      <aside className={classes.aside}>
-        <p className={classes.welcome}>
-          Welcome {userMgr.currentUser.username}
-        </p>
-        <div className={classes.labelBtnBox}>
-          {postMgr.isFiltering && <LabelBadge />}
-          <button
-            className={classes.btnCreate}
-            onClick={() => {
-              uiMgr.dispatch({ type: "CREATEPOST" });
-            }}
-          >
-            +
-          </button>
-        </div>
-      </aside>
-      {uiMgr.hasInteracted || (
-        <Slide delay={2500} direction="right" className={classes.slide}>
-          <Bounce className={`${classes.swipe} material-symbols-outlined`}>
-            swipe
-          </Bounce>
-        </Slide>
-      )}
+      <NavBanner />
+      {uiMgr.hasInteracted || <SwipeAnim />}
       <ul className={classes.ul} onScroll={() => uiMgr.setHasInteracted(true)}>
         {postsMgr.displayPosts.map((obj, index) => {
-          return <PostItem key={`POST_${index}`} obj={obj} />;
+          return (
+            <React.Suspense fallback={"loading..."}>
+              <PostItemLazy key={`POST_${index}`} obj={obj} />
+            </React.Suspense>
+          );
         })}
       </ul>
     </main>

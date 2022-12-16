@@ -1,13 +1,14 @@
 import classes from "./User.module.css";
-import { useContext, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import AvatarForm from "../../components/AvatarForm/AvatarForm";
 import { userCtx } from "../../features/user-ctx";
 import { UiCtx } from "../../features/ui-ctx";
-import PostItem from "../../components/PostItem/PostItem";
+const PostItemLazy = React.lazy(
+  () => import("../../components/PostItem/PostItem")
+);
 
 const User = () => {
-  const nav = useNavigate();
   const userMgr = useContext(userCtx);
   const uiMgr = useContext(UiCtx);
   const userId = useParams();
@@ -42,7 +43,11 @@ const User = () => {
       </p>
       <ul className={`${classes.ul} flex_col_center`}>
         {userMgr.userProfile.posts.map((obj, index) => {
-          return <PostItem key={`POST_${index}`} obj={obj} profile={true} />;
+          return (
+            <React.Suspense fallback={"loading..."}>
+              <PostItemLazy key={`POST_${index}`} obj={obj} profile={true} />
+            </React.Suspense>
+          );
         })}
       </ul>
     </main>

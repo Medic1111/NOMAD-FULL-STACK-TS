@@ -3,10 +3,10 @@ import profile_classes from "../../pages/User/User.module.css";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { userCtx } from "../../features/user-ctx";
-import { PostCtx } from "../../features/posts-ctx";
 import { Post } from "../../models/user-models";
 import OptionBox from "../OptionBox/OptionBox";
 import MoreLikeThis from "../MoreLikeThis/MoreLikeThis";
+import Vote from "../Vote/Vote";
 
 const PostItem: React.FC<{ obj: Post; profile?: boolean }> = ({
   obj,
@@ -14,7 +14,6 @@ const PostItem: React.FC<{ obj: Post; profile?: boolean }> = ({
 }) => {
   const nav = useNavigate();
   const userMgr = useContext(userCtx);
-  const postsMgr = useContext(PostCtx);
 
   return (
     <li className={profile ? profile_classes.li : classes.li}>
@@ -29,23 +28,7 @@ const PostItem: React.FC<{ obj: Post; profile?: boolean }> = ({
             <img className={classes.avatar} src={obj.avatar} />
             <p className={classes.username}>{obj.username}</p>
           </div>
-          <div className={`${classes.voteBox} flex_center`}>
-            <span
-              className={
-                obj.up_by.includes(userMgr.currentUser.username)
-                  ? `${classes.upvoted} material-symbols-outlined`
-                  : `${classes.upvote} material-symbols-outlined`
-              }
-              onClick={() => {
-                return obj.up_by.includes(userMgr.currentUser.username)
-                  ? null
-                  : postsMgr.onUpVote(obj._id);
-              }}
-            >
-              arrow_upward
-            </span>
-            <span className={classes.upvoteCount}>{obj.voteCount}</span>
-          </div>
+          <Vote obj={obj} />
         </div>
       )}
       <img
