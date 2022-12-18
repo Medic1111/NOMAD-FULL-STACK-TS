@@ -5,6 +5,7 @@ import { UiCtx } from "../../features/ui-ctx";
 import Label from "../Label/Label";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import ImgUpload from "../ImgUpload/ImgUpload";
 
 const NewPostForm: React.FC = () => {
   const postMgr = useContext(PostCtx);
@@ -12,9 +13,9 @@ const NewPostForm: React.FC = () => {
 
   const [label, setLabel] = useState("none");
   const [content, setContent] = useState("");
+  const [url, setUrl] = useState("");
   const [postData, setPostData] = useState({
     title: "",
-    url: "",
   });
 
   const onInputChange = (
@@ -30,56 +31,54 @@ const NewPostForm: React.FC = () => {
 
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postMgr.onCreateNewPost({ ...postData, label, content });
+    postMgr.onCreateNewPost({ ...postData, label, content, url: url });
   };
 
   return (
-    <form
-      onSubmit={handleCreatePost}
-      className={`${classes.form} flex_col_center`}
-    >
-      <input
-        name="title"
-        value={postData.title}
-        onChange={onInputChange}
-        className={`${classes.input} input_standard`}
-        type="text"
-        placeholder="Title"
-        maxLength={20}
-        required
-      />
-      <ReactQuill
-        className={`${classes.textArea} input_standard`}
-        theme="snow"
-        value={content}
-        onChange={setContent}
-      />
-
-      <input
-        name="url"
-        value={postData.url}
-        onChange={onInputChange}
-        className={`${classes.input} input_standard`}
-        type="text"
-        placeholder="Img Url"
-        required
-      />
-      <Label label={label} setLabel={setLabel} />
-      <input
-        value="post"
-        className={`${classes.submitBtn} btn_standard`}
-        type="submit"
-      />
-      <button
-        className={`${classes.submitBtn} btn_standard`}
-        onClick={(e) => {
-          e.preventDefault();
-          uiMgr.dispatch({ type: "CLOSE" });
-        }}
+    <article className={`${classes.article} flex_col_center`}>
+      <ImgUpload setUrl={setUrl} url={url} />
+      <form
+        onSubmit={handleCreatePost}
+        className={`${classes.form} flex_col_center`}
       >
-        cancel
-      </button>
-    </form>
+        <input
+          name="title"
+          value={postData.title}
+          onChange={onInputChange}
+          className={`${classes.input} input_standard`}
+          type="text"
+          placeholder="Title"
+          maxLength={20}
+          required
+        />
+        <ReactQuill
+          className={`${classes.textArea} input_standard`}
+          theme="snow"
+          value={content}
+          onChange={setContent}
+        />
+        <Label label={label} setLabel={setLabel} />
+        <input
+          disabled={url === "" ? true : false}
+          value="post"
+          className={
+            url === ""
+              ? `${classes.disabled} btn_standard`
+              : `${classes.submitBtn} btn_standard`
+          }
+          type="submit"
+        />
+        <button
+          className={`${classes.submitBtn} btn_standard`}
+          onClick={(e) => {
+            e.preventDefault();
+            uiMgr.dispatch({ type: "CLOSE" });
+          }}
+        >
+          cancel
+        </button>
+      </form>
+    </article>
   );
 };
 

@@ -19,7 +19,7 @@ const SpecPost: React.FC = () => {
   const postId = useParams();
 
   const [objToRender, setObjToRender] = useState(postMgr.specPost);
-
+  console.log(objToRender);
   const fetchPost = async () => {
     uiMgr.dispatch({ type: "LOADING" });
     await axios

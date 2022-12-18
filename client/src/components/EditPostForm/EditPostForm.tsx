@@ -6,6 +6,7 @@ import { PostCtx } from "../../features/posts-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import Label from "../Label/Label";
 import ReactQuill from "react-quill";
+import ImgUpload from "../ImgUpload/ImgUpload";
 
 const EditPostForm: React.FC = () => {
   const postMgr = useContext(PostCtx);
@@ -14,7 +15,7 @@ const EditPostForm: React.FC = () => {
   const [oldData, setOldData] = useState<Post>(PostTemplate);
   const [label, setLabel] = useState("none");
   const [content, setContent] = useState("");
-
+  const [newUrl, setNewUrl] = useState("");
   const fetchPost = async () => {
     await axios
       .get(`/api/v1/posts/${postMgr.postIdToEdit}`)
@@ -44,56 +45,56 @@ const EditPostForm: React.FC = () => {
 
   const handleEditPost = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    postMgr.onEditPost(postMgr.postIdToEdit, { ...oldData, label, content });
+    postMgr.onEditPost(postMgr.postIdToEdit, {
+      ...oldData,
+      label,
+      content,
+      url: newUrl,
+    });
   };
 
   return (
-    <form
-      onSubmit={handleEditPost}
-      className={`${classes.form} flex_col_center`}
-    >
-      <input
-        name="title"
-        value={oldData.title}
-        onChange={onInputChange}
-        className={`${classes.input} input_standard`}
-        type="text"
-        placeholder="Title"
-        maxLength={20}
-        required
-      />
-      <ReactQuill
-        className={`${classes.textArea} input_standard`}
-        theme="snow"
-        value={content}
-        onChange={setContent}
-      />
-
-      <input
-        name="url"
-        value={oldData.url}
-        onChange={() => onInputChange}
-        className={`${classes.input} input_standard`}
-        type="text"
-        placeholder="Img Url"
-        required
-      />
-      <Label label={label} setLabel={setLabel} />
-      <input
-        value="Edit post"
-        className={`${classes.submitBtn} btn_standard`}
-        type="submit"
-      />
-      <button
-        className={`${classes.submitBtn} btn_standard`}
-        onClick={(e) => {
-          e.preventDefault();
-          uiMgr.dispatch({ type: "CLOSE" });
-        }}
+    <article className={`${classes.article} flex_col_center`}>
+      <ImgUpload setUrl={setNewUrl} url={newUrl} />
+      <form
+        onSubmit={handleEditPost}
+        className={`${classes.form} flex_col_center`}
       >
-        Cancel
-      </button>
-    </form>
+        <input
+          name="title"
+          value={oldData.title}
+          onChange={onInputChange}
+          className={`${classes.input} input_standard`}
+          type="text"
+          placeholder="Title"
+          maxLength={20}
+          required
+        />
+        <ReactQuill
+          className={`${classes.textArea} input_standard`}
+          theme="snow"
+          value={content}
+          onChange={setContent}
+        />
+
+        <Label label={label} setLabel={setLabel} />
+        <input
+          disabled={newUrl === "" ? true : false}
+          value="Edit post"
+          className={`${classes.submitBtn} btn_standard`}
+          type="submit"
+        />
+        <button
+          className={`${classes.submitBtn} btn_standard`}
+          onClick={(e) => {
+            e.preventDefault();
+            uiMgr.dispatch({ type: "CLOSE" });
+          }}
+        >
+          Cancel
+        </button>
+      </form>
+    </article>
   );
 };
 
