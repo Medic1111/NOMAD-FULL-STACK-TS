@@ -81,7 +81,11 @@ const EditPostForm: React.FC = () => {
         <input
           disabled={newUrl === "" ? true : false}
           value="Edit post"
-          className={`${classes.submitBtn} btn_standard`}
+          className={
+            newUrl === ""
+              ? `${classes.disabled} btn_standard`
+              : `${classes.submitBtn} btn_standard`
+          }
           type="submit"
         />
         <button

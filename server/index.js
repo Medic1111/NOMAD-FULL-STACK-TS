@@ -69,15 +69,21 @@ app.post(
   "/api/v1/upload",
   formidable({ maxFileSize: 5 * 1024 * 1024 }),
   async (req, res) => {
-    // console.log(req.files.image.path);
-    await cloudinary.uploader
-      .upload(req.files.image.path)
-      .then((result) => {
-        // console.log(result);
-        // console.log(result.url);
-        res.json(result.url);
-      })
-      .catch((err) => console.log(err));
+    console.log(!req.files.image);
+    if (req.files.image) {
+      await cloudinary.uploader
+        .upload(req.files.image.path)
+        .then((result) => {
+          // console.log(result);
+          // console.log(result.url);
+          res.status(200).json(result.url);
+        })
+        .catch((err) =>
+          res.status(500).json({ message: "Oops, something went wrong" })
+        );
+    } else {
+      return res.status(500).json({ message: "Oops, something went wrong" });
+    }
   }
 );
 

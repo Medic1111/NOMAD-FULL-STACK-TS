@@ -30,8 +30,8 @@ export interface AuthCtxType {
 // TEMPLATES
 
 export const FormDataTemplate = {
-  email: "",
-  username: "",
-  password: "",
+  email: "testinguser@test.com",
+  username: "testing",
+  password: "password",
   avatar: "",
 };

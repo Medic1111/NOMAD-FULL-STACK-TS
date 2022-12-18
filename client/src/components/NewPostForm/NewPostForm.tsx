@@ -57,6 +57,7 @@ const NewPostForm: React.FC = () => {
           value={content}
           onChange={setContent}
         />
+
         <Label label={label} setLabel={setLabel} />
         <input
           disabled={url === "" ? true : false}

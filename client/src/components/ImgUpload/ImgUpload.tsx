@@ -1,5 +1,6 @@
 import classes from "./ImgUpload.module.css";
 import axios from "axios";
+import { useState } from "react";
 
 interface Props {
   setUrl: React.Dispatch<React.SetStateAction<string>>;
@@ -7,9 +8,11 @@ interface Props {
 }
 
 const ImgUpload: React.FC<Props> = ({ setUrl, url }) => {
+  const [readyToUpload, setReadyToUpload] = useState(false);
   let formData: any;
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      setReadyToUpload(true);
       const file = e.target.files[0];
       formData = new FormData();
       formData.append("image", file);
@@ -32,7 +35,7 @@ const ImgUpload: React.FC<Props> = ({ setUrl, url }) => {
     <form onSubmit={submitFileHandler}>
       <label className={classes.label}>
         <span className={`${classes.camera} material-symbols-outlined`}>
-          photo_camera
+          {readyToUpload ? "check" : "photo_camera"}
         </span>
 
         <input
@@ -42,9 +45,12 @@ const ImgUpload: React.FC<Props> = ({ setUrl, url }) => {
           type={"file"}
           accept="image/*"
         />
-        <button className={classes.upload} value="Upload" type={"submit"}>
-          {url === "" ? "Click to upload" : "Uploaded"}
-        </button>
+
+        {readyToUpload && (
+          <button className={classes.upload} value="Upload" type={"submit"}>
+            {url === "" ? "Click here to upload selection" : "Uploaded"}
+          </button>
+        )}
       </label>
     </form>
   );

@@ -53,9 +53,9 @@ body {
 .input_standard {
   border: transparent;
   border-radius: 2.5vh;
-  padding-left: 0.5em;
   outline: none;
   color: rgb(0, 128, 92);
+  text-align: center;
 }
 
 .label_standard {
