@@ -1,16 +1,21 @@
-.form {
+.article {
   height: 100%;
   width: 100%;
   position: fixed;
   background-color: var(--bg);
-  display: flex;
+}
+
+.form {
+  height: 70%;
   gap: 1vh;
+  width: 100%;
 }
 
 .input,
 .textArea,
 .submitBtn,
-.fileWrapper {
+.fileWrapper,
+.disabled {
   width: 95%;
   text-align: center;
   height: 5vh;
@@ -33,6 +38,16 @@
 /* TEST */
 .submitBtn {
   font-weight: 400;
+}
+
+.disabled {
+  background-color: gainsboro;
+}
+.disabled:hover {
+  background-color: rgb(149, 56, 56);
+  color: #f7f7f7;
+  transition: 0.25s;
+  cursor: not-allowed;
 }
 
 @media (min-width: 640px) {

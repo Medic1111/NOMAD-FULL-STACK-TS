@@ -5,6 +5,15 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
+const cloudinary = require("cloudinary").v2;
+const formidable = require("express-formidable");
+
+cloudinary.config({
+  cloud_name: `${process.env.CLOUDINARY_NAME}`,
+  api_key: `${process.env.CLOUDINARY_KEY}`,
+  api_secret: `${process.env.CLOUDINARY_SECRET}`,
+});
+
 const app = express();
 
 // PERSONAL REQUIRES
@@ -52,6 +61,24 @@ app.use("/", moreLikeRoute);
 
 mongoose.connect(`${process.env.DB_URI}`, (err) =>
   err ? console.log(err) : console.log("DB Connected")
+);
+
+// TEST
+
+app.post(
+  "/api/v1/upload",
+  formidable({ maxFileSize: 5 * 1024 * 1024 }),
+  async (req, res) => {
+    // console.log(req.files.image.path);
+    await cloudinary.uploader
+      .upload(req.files.image.path)
+      .then((result) => {
+        // console.log(result);
+        // console.log(result.url);
+        res.json(result.url);
+      })
+      .catch((err) => console.log(err));
+  }
 );
 
 // ROUTES

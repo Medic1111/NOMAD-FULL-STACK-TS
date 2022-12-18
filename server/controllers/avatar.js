@@ -2,7 +2,7 @@ const { User, Post } = require("../models/database");
 
 const avatarControl = async (req, res) => {
   let username = req.params.user;
-  let newUrl = req.body.newUrl;
+  let newUrl = req.body.url;
   let newPostArr;
 
   await Post.find({ username: username })

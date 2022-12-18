@@ -1,4 +1,4 @@
-.form {
+.article {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -7,6 +7,18 @@
   background-color: #f7f7f7;
   gap: 2.5vh;
   z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5vh;
+}
+.form {
+  height: 30%;
+  width: 100vw;
+  gap: 2.5vh;
+  z-index: 99999;
+  width: 100%;
 }
 
 .input,

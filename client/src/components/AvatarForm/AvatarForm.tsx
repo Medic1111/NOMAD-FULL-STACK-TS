@@ -4,23 +4,24 @@ import axios from "axios";
 import { authCtx } from "../../features/auth-ctx";
 import { UiCtx } from "../../features/ui-ctx";
 import { userCtx } from "../../features/user-ctx";
+import ImgUpload from "../ImgUpload/ImgUpload";
 
 const AvatarForm: React.FC = () => {
   const userMgr = useContext(userCtx);
   const uiMgr = useContext(UiCtx);
   const authMgr = useContext(authCtx);
 
-  const [newUrl, setNewUrl] = useState("");
+  const [url, setUrl] = useState("");
 
   const onUpdateAvatar = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     await axios
-      .put(`/api/v1/${userMgr.currentUser.username}/avatar`, { newUrl })
+      .put(`/api/v1/${userMgr.currentUser.username}/avatar`, { url })
       .then((serverRes) => {
         localStorage.setItem(
           "userValidation",
           JSON.stringify({
-            avatar: newUrl,
+            avatar: url,
           })
         );
         authMgr.setIsAuth(false);
@@ -30,33 +31,28 @@ const AvatarForm: React.FC = () => {
   };
 
   return (
-    <form className={`${classes.form} flex_col_center`}>
+    <article className={classes.article}>
       <h3 className={classes.h3}>Edit Profile Picture</h3>
-      <input
-        className={`${classes.input} input_standard`}
-        type="text"
-        placeholder="New Image URL"
-        value={newUrl}
-        onChange={(e) => {
-          setNewUrl(e.target.value);
-        }}
-      />
-      <input
-        onClick={onUpdateAvatar}
-        className={`${classes.inputBtn} btn_standard`}
-        type="submit"
-        value="Update"
-      />
-      <button
-        className={`${classes.inputBtn} btn_standard`}
-        onClick={(e) => {
-          e.preventDefault();
-          uiMgr.dispatch({ type: "CLOSE" });
-        }}
-      >
-        Cancel
-      </button>
-    </form>
+      <ImgUpload setUrl={setUrl} url={url} />
+      <form className={`${classes.form} flex_col_center`}>
+        <input
+          disabled={url === "" ? true : false}
+          onClick={onUpdateAvatar}
+          className={`${classes.inputBtn} btn_standard`}
+          type="submit"
+          value="Update"
+        />
+        <button
+          className={`${classes.inputBtn} btn_standard`}
+          onClick={(e) => {
+            e.preventDefault();
+            uiMgr.dispatch({ type: "CLOSE" });
+          }}
+        >
+          Cancel
+        </button>
+      </form>
+    </article>
   );
 };
 
