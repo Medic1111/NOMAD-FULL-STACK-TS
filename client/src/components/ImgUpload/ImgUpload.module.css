@@ -18,6 +18,7 @@
   border: none;
   cursor: pointer;
   color: var(--color_p_dark);
+  text-decoration: underline;
 }
 .camera {
   cursor: pointer;

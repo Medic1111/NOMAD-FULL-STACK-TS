@@ -38,7 +38,12 @@ const AvatarForm: React.FC = () => {
         <input
           disabled={url === "" ? true : false}
           onClick={onUpdateAvatar}
-          className={`${classes.inputBtn} btn_standard`}
+          // className={`${classes.inputBtn} btn_standard`}
+          className={
+            url === ""
+              ? `${classes.disabled} btn_standard`
+              : `${classes.submitBtn} btn_standard`
+          }
           type="submit"
           value="Update"
         />

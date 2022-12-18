@@ -70,6 +70,7 @@ const AuthForms = () => {
               name="avatar"
               value={authMgr.formData.avatar}
               onChange={(e) => authMgr.onInputChange(e)}
+              placeholder="optional"
             />
           </>
         )}
